@@ -18,7 +18,6 @@ public class Booking extends TestBase{
     )
     @Feature("Бронь")
     void bookingTable() {
-        SelenideLogger.addListener("allure", new AllureSelenide());
         step("Открываем главную страницу", () -> {
         open("https://shashlik.club");
         });

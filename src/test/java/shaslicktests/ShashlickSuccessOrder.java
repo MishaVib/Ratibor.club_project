@@ -26,9 +26,8 @@ public class ShashlickSuccessOrder extends TestBase {
     )
     @Feature("Оформление заказа")
     void successOrder() {
-        SelenideLogger.addListener("allure", new AllureSelenide());
         step("Открываем главную страницу", () -> {
-            Selenide.open("https://shashlik.club");
+            Selenide.open("https://shashlik.club/");
         });
         step("Наличие номера телефона и заголовка", () -> {
         $("#primary").shouldHave(text("Шашлык от кафе Ратибор"));

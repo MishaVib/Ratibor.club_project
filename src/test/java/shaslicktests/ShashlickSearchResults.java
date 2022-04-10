@@ -27,7 +27,7 @@ public class ShashlickSearchResults extends TestBase {
 void searchResults(String testData, String expectedText) {
         SelenideLogger.addListener("allure", new AllureSelenide());
         step("Открываем главную страницу", () -> {
-        open("https://shashlik.club");
+        open("https://shashlik.club/");
         });
         step("Вбиваем в строку поиска установленные значения", () -> {
         $("#woocommerce-product-search-field-0").setValue(testData).pressEnter();
@@ -40,9 +40,8 @@ void searchResults(String testData, String expectedText) {
     @ValueSource(strings = {"баранина", "свиная"})
     @ParameterizedTest(name = "showing pork and mutton in results")
     void shashlickSearchTest(String testData2) {
-        SelenideLogger.addListener("allure", new AllureSelenide());
         step("Открываем главную страницу", () -> {
-        open("https://shashlik.club");
+        open("https://shashlik.club/");
         });
         step("Вбиваем в строку поиска установленные значения", () -> {
         $(".search-field").setValue(testData2).pressEnter();

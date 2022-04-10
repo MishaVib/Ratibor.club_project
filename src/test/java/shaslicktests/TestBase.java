@@ -12,7 +12,7 @@ public class TestBase {
     @BeforeAll
     static void beforeAll() {
         Selenide.clearBrowserCookies();
-        Configuration.baseUrl = "https://shashlik.club";
+        Configuration.baseUrl = "https://shashlik.club/";
         Configuration.browserSize = "1680x1050";
         SelenideLogger.addListener("allure", new AllureSelenide());
 

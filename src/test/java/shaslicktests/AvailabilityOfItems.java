@@ -21,7 +21,6 @@ public class AvailabilityOfItems extends TestBase {
     @Test
     @DisplayName("Name of soups items and its price")
     void borsh() {
-        SelenideLogger.addListener("allure", new AllureSelenide());
         step("Открываем главную страницу", () -> {
         Selenide.open("https://shashlik.club/");
         });
@@ -61,7 +60,6 @@ public class AvailabilityOfItems extends TestBase {
     @Feature("Items")
     @Severity(SeverityLevel.NORMAL)
     void vypechka() {
-        SelenideLogger.addListener("allure", new AllureSelenide());
         step("Открываем главную страницу", () -> {
         Selenide.open("https://shashlik.club/");
         });
@@ -89,7 +87,6 @@ public class AvailabilityOfItems extends TestBase {
     @Feature("Items")
     @Severity(SeverityLevel.CRITICAL)
     void assortiment() {
-        SelenideLogger.addListener("allure", new AllureSelenide());
         step("Открываем главную страницу", () -> {
         Selenide.open("https://shashlik.club/");
         });
@@ -180,7 +177,6 @@ public class AvailabilityOfItems extends TestBase {
     @Feature("Items")
     @Severity(SeverityLevel.NORMAL)
     void shashlickIsBaraniny() {
-        SelenideLogger.addListener("allure", new AllureSelenide());
         step("Открываем главную страницу", () -> {
         Selenide.open("https://shashlik.club/");
         });
@@ -238,7 +234,6 @@ public class AvailabilityOfItems extends TestBase {
     @Feature("Items")
     @Severity(SeverityLevel.NORMAL)
     void shashlickIsSvininy() {
-        SelenideLogger.addListener("allure", new AllureSelenide());
         step("Открываем главную страницу", () -> {
         Selenide.open("https://shashlik.club/");
         });
@@ -283,7 +278,6 @@ public class AvailabilityOfItems extends TestBase {
     @Feature("Items")
     @Severity(SeverityLevel.CRITICAL)
     void link_2() {
-        SelenideLogger.addListener("allure", new AllureSelenide());
         step("Открываем главную страницу", () -> {
         Selenide.open("https://shashlik.club/");
         });
