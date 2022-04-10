@@ -68,15 +68,19 @@ public class AvailabilityOfItems extends TestBase {
         });
         step("Наличие товара Хачапури по Аджарски и его стоимости", () -> {
         $("h2").shouldHave(text("Хачапури по Аджарски")).shouldBe(visible);
-        $("bdi").shouldHave(text("300.00")).shouldBe(visible);
+        $("bdi").shouldHave(text("350.00")).shouldBe(visible);
+        });
+        step("Наличие товара Хачапури по Аджарски с двумя яйцами его стоимости", () -> {
+        $("h2", 1).shouldHave(text("Хачапури по Аджарски с двумя яйцами")).shouldBe(visible);
+        $("bdi", 1).shouldHave(text("450.00")).shouldBe(visible);
         });
         step("Наличие товара Хачапури по Имеретински и его стоимости", () -> {
-        $("h2", 1).shouldHave(text("Хачапури по Имеретински")).shouldBe(visible);
-        $("bdi", 1).shouldHave(text("300.00")).shouldBe(visible);
+        $("h2", 2).shouldHave(text("Хачапури по Имеретински")).shouldBe(visible);
+        $("bdi", 2).shouldHave(text("400.00")).shouldBe(visible);
         });
         step("Наличие товара Хачапури по Мегрельски и его стоимости", () -> {
-        $("h2", 2).shouldHave(text("Хачапури по Мегрельски")).shouldBe(visible);
-        $("bdi", 2).shouldHave(text("350.00")).shouldBe(visible);
+            $("h2", 3).shouldHave(text("Хачапури по Мегрельски")).shouldBe(visible);
+            $("bdi", 3).shouldHave(text("450.00")).shouldBe(visible);
         });
     }
 

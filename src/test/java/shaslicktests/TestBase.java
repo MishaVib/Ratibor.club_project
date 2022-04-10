@@ -13,7 +13,7 @@ public class TestBase {
     static void beforeAll() {
         Selenide.clearBrowserCookies();
         Configuration.baseUrl = "https://shashlik.club/";
-        Configuration.browserSize = "1680x1050";
+        Configuration.browserSize = "1920x1080";
         SelenideLogger.addListener("allure", new AllureSelenide());
 
         DesiredCapabilities capabilities = new DesiredCapabilities();
