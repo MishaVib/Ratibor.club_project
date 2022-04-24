@@ -1,9 +1,8 @@
 package shaslicktests;
 import com.codeborne.selenide.Selenide;
-import com.codeborne.selenide.logevents.SelenideLogger;
 import com.github.javafaker.Faker;
 import io.qameta.allure.*;
-import io.qameta.allure.selenide.AllureSelenide;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import java.util.Locale;
 import static com.codeborne.selenide.Selectors.*;
@@ -19,6 +18,7 @@ public class ShashlickSuccessOrder extends TestBase {
 
 
     @Test
+    @Tag("smoke")
     @Owner("Никита Шутков")
     @Severity(SeverityLevel.BLOCKER)
     @Description(
