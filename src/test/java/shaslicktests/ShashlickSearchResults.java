@@ -3,6 +3,7 @@ package shaslicktests;
 import com.codeborne.selenide.logevents.SelenideLogger;
 import io.qameta.allure.*;
 import io.qameta.allure.selenide.AllureSelenide;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -12,6 +13,7 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 import static io.qameta.allure.Allure.step;
 
+@Tag("regress")
 public class ShashlickSearchResults extends TestBase {
     @Owner("Никита Шутков")
     @Severity(SeverityLevel.CRITICAL)
