@@ -67,5 +67,6 @@ task regress_test(type: Test) {
         useJUnitPlatform {
             includeTags "acceptance"
         }
+
+        }
     }
-}
