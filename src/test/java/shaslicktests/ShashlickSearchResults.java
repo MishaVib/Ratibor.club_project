@@ -8,6 +8,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import static com.codeborne.selenide.Condition.empty;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
@@ -32,7 +33,7 @@ void searchResults(String testData, String expectedText) {
         open("https://shashlik.club/");
         });
         step("Вбиваем в строку поиска установленные значения", () -> {
-        $("#woocommerce-product-search-field-0").setValue(testData).pressEnter();
+        $("#woocommerce-product-search-field-0").shouldBe(empty).setValue(testData).pressEnter();
         });
         step("Проверяем, что в результатах поиска есть установленное значение", () -> {
         $(".content-area").shouldHave(text(expectedText));
@@ -46,7 +47,7 @@ void searchResults(String testData, String expectedText) {
         open("https://shashlik.club/");
         });
         step("Вбиваем в строку поиска установленные значения", () -> {
-        $(".search-field").setValue(testData2).pressEnter();
+        $(".search-field").shouldBe(empty).setValue(testData2).pressEnter();
         });
         step("Проверяем, что в результатах поиска есть установленные значения", () -> {
         $(".content-area").shouldHave(text(testData2));
