@@ -30,28 +30,28 @@ public class AvailabilityOfItems extends TestBase {
         $(byText("Супы")).click();
         });
         step("Наличие товара Борщ и его стоимости", () -> {
-        $("h2").shouldHave(text("Борщ")).shouldBe(visible);
-        $("bdi").shouldHave(text("300.00")).shouldBe(visible);
+        $x("//h2[contains(text(),'Борщ')]").shouldBe(visible);
+        $x("//bdi[contains(text(),'320.00')]").shouldBe(visible);
         });
         step("Наличие товара Уха по-царски и его стоимости", () -> {
-        $("h2", 1).shouldHave(text("Уха по-царски")).shouldBe(visible);
-        $("bdi", 1).shouldHave(text("350.00")).shouldBe(visible);
+        $x("//h2[contains(text(),'Уха по-царски')]").shouldBe(visible);
+        $x("//bdi[contains(text(),'420.00')]").shouldBe(visible);
         });
-        step("Наличие товара Уха по-царски и его стоимости", () -> {
-        $("h2", 2).shouldHave((text("Солянка"))).shouldBe(visible);
-        $("bdi", 2).shouldHave(text("320.00")).shouldBe(visible);
+        step("Наличие товара Солянка и его стоимости", () -> {
+        $x("//h2[contains(text(),'Солянка')]").shouldBe(visible);
+        $x("//bdi[contains(text(),'400.00')]").shouldBe(visible);
         });
         step("Наличие товара Суп куриный и его стоимости", () -> {
-        $("h2", 3).shouldHave((text("Суп куриный"))).shouldBe(visible);
-        $("bdi", 3).shouldHave(text("220.00")).shouldBe(visible);
+        $x("//h2[contains(text(),'Суп куриный')]").shouldBe(visible);
+        $x("//bdi[contains(text(),'250.00')]").shouldBe(visible);
         });
         step("Наличие товара Харчо и его стоимости", () -> {
-        $("h2", 4).shouldHave((text("Харчо"))).shouldBe(visible);
-        $("bdi", 4).shouldHave(text("270.00")).shouldBe(visible);
+        $x("//h2[contains(text(),'Харчо')]").shouldBe(visible);
+        $("bdi", 4).shouldHave(text("320.00")).shouldBe(visible);
         });
         step("Наличие товара Крем суп и его стоимости", () -> {
-        $("h2", 5).shouldHave((text("Крем суп"))).shouldBe(visible);
-        $("bdi", 5).shouldHave(text("300.00")).shouldBe(visible);
+        $x("//h2[contains(text(),'Крем суп с шампиньонами')]").shouldBe(visible);
+        $x("//bdi[contains(text(),'360.00')]").shouldBe(visible);
         });
     }
 
