@@ -53,7 +53,7 @@ public class AvailabilityOfItems extends TestBase {
         });
         step("Наличие товара Харчо и его стоимости", () -> {
             $x("//h2[contains(text(),'Харчо')]").shouldBe(visible);
-            $("bdi", 4).shouldHave(text("320.00")).shouldBe(visible);
+            $("bdi", 4).shouldHave(exactText("320.00 Р")).shouldBe(visible);
         });
         step("Наличие товара Крем суп и его стоимости", () -> {
             $x("//h2[contains(text(),'Крем суп с шампиньонами')]").shouldBe(visible);
