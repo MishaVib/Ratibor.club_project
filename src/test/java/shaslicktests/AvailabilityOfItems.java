@@ -74,21 +74,25 @@ public class AvailabilityOfItems extends TestBase {
         step("Переход в раздел Выпечка", () -> {
             $(byText("Выпечка")).click();
         });
+        step("наличие кнопок Добавить в корзину у всех товаров категории Выпечка", () -> {
+            $$x("//a[@class='button product_type_simple add_to_cart_button ajax_add_to_cart']")
+                    .shouldHave(size(4));
+        });
         step("Наличие товара Хачапури по Аджарски и его стоимости", () -> {
-            $("h2").shouldHave(text("Хачапури по Аджарски")).shouldBe(visible);
-            $("bdi").shouldHave(text("350.00")).shouldBe(visible);
+            $x("//h2[contains(text(),'Хачапури по Аджарски')]").shouldBe(visible);
+            $x("//bdi[contains(text(),'350.00')]").shouldBe(visible);
         });
         step("Наличие товара Хачапури по Аджарски с двумя яйцами его стоимости", () -> {
-            $("h2", 1).shouldHave(text("Хачапури по Аджарски с двумя яйцами")).shouldBe(visible);
-            $("bdi", 1).shouldHave(text("450.00")).shouldBe(visible);
+            $x("//h2[contains(text(),'Хачапури по Аджарски с двумя яйцами')]").shouldBe(visible);
+            $x("//bdi[contains(text(),'470.00')]").shouldBe(visible);
         });
         step("Наличие товара Хачапури по Имеретински и его стоимости", () -> {
-            $("h2", 2).shouldHave(text("Хачапури по Имеретински")).shouldBe(visible);
-            $("bdi", 2).shouldHave(text("400.00")).shouldBe(visible);
+            $x("//h2[contains(text(),'Хачапури по Имеретински')]").shouldBe(visible);
+            $x("//bdi[contains(text(),'400.00')]").shouldBe(visible);
         });
         step("Наличие товара Хачапури по Мегрельски и его стоимости", () -> {
-            $("h2", 3).shouldHave(text("Хачапури по Мегрельски")).shouldBe(visible);
-            $("bdi", 3).shouldHave(text("450.00")).shouldBe(visible);
+            $x("//h2[contains(text(),'Хачапури по Мегрельски')]").shouldBe(visible);
+            $x("//bdi[contains(text(),'450.00')]").shouldBe(visible);
         });
     }
 
@@ -104,36 +108,36 @@ public class AvailabilityOfItems extends TestBase {
         });
         step("Саджест лист в верхнем меню скрыт до наведения курсора на Блюда на мангале", () -> {
             $x("//a[@href='https://shashlik.club/category/blyuda-na-mangale/assorti-shashlyka/']")
-                    .shouldNot(appear).shouldNotBe(visible);
+                    .shouldNot(appear).shouldBe(hidden);
             $x("//a[@href='https://shashlik.club/category/blyuda-na-mangale/shashlyk-iz-baraniny/']")
-                    .shouldNot(appear).shouldNotBe(visible);
+                    .shouldNot(appear).shouldBe(hidden);
             $x("//a[@href='https://shashlik.club/category/blyuda-na-mangale/shashlyk-iz-svininy/']")
-                    .shouldNot(appear).shouldNotBe(visible);
+                    .shouldNot(appear).shouldBe(hidden);
             $x("//a[@href='https://shashlik.club/category/blyuda-na-mangale/shashlyk-iz-telyatiny/']")
-                    .shouldNot(appear).shouldNotBe(visible);
+                    .shouldNot(appear).shouldBe(hidden);
             $x("//a[@href='https://shashlik.club/category/blyuda-na-mangale/shashlyk-iz-kuritsy/']")
-                    .shouldNot(appear).shouldNotBe(visible);
+                    .shouldNot(appear).shouldBe(hidden);
             $x("//a[@href='https://shashlik.club/category/blyuda-na-mangale/shashlyk-iz-ryby/']")
-                    .shouldNot(appear).shouldNotBe(visible);
+                    .shouldNot(appear).shouldBe(hidden);
             $x("//a[@href='https://shashlik.club/category/garniry/']")
-                    .shouldNot(appear).shouldNotBe(visible);
+                    .shouldNot(appear).shouldBe(hidden);
         });
         step("При наведении курсора на Блюда на мангале в верхнем меню саджест лист появляется", () -> {
             $x("//a[@href='https://shashlik.club/category/blyuda-na-mangale/']").hover();
             $x("//a[@href='https://shashlik.club/category/blyuda-na-mangale/assorti-shashlyka/']")
-                    .should(appear).shouldBe(visible);
+                    .should(appear).shouldBe(enabled);
             $x("//a[@href='https://shashlik.club/category/blyuda-na-mangale/shashlyk-iz-baraniny/']")
-                    .should(appear).shouldBe(visible);
+                    .should(appear).shouldBe(enabled);
             $x("//a[@href='https://shashlik.club/category/blyuda-na-mangale/shashlyk-iz-svininy/']")
-                    .should(appear).shouldBe(visible);
+                    .should(appear).shouldBe(enabled);
             $x("//a[@href='https://shashlik.club/category/blyuda-na-mangale/shashlyk-iz-telyatiny/']")
-                    .should(appear).shouldBe(visible);
+                    .should(appear).shouldBe(enabled);
             $x("//a[@href='https://shashlik.club/category/blyuda-na-mangale/shashlyk-iz-kuritsy/']")
-                    .should(appear).shouldBe(visible);
+                    .should(appear).shouldBe(enabled);
             $x("//a[@href='https://shashlik.club/category/blyuda-na-mangale/shashlyk-iz-ryby/']")
-                    .should(appear).shouldBe(visible);
+                    .should(appear).shouldBe(enabled);
             $x("//a[@href='https://shashlik.club/category/garniry/']")
-                    .should(appear).shouldBe(visible);
+                    .should(appear).shouldBe(enabled);
         });
     }
 
