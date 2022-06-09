@@ -256,35 +256,36 @@ public class AvailabilityOfItems extends TestBase {
         step("Навести курсор на Блюда на мангале для появления саджест листа", () -> {
             $x("//a[@href='https://shashlik.club/category/blyuda-na-mangale/']").hover();
             $x("//a[@href='https://shashlik.club/category/blyuda-na-mangale/shashlyk-iz-svininy/']")
-                    .should(appear).shouldBe(visible);
+                    .should(appear).shouldBe(enabled);
         });
         step("Клик на Шашлык из свинины из саджест листа", () -> {
-            $x("//a[@href='https://shashlik.club/category/blyuda-na-mangale/shashlyk-iz-svininy/']").scrollTo()
+            $x("//a[@href='https://shashlik.club/category/blyuda-na-mangale/shashlyk-iz-svininy/']")
+                    .scrollTo()
                     .click();
         });
         step("Наличие товара Свиная шея и его стоимости", () -> {
-            $("h2").shouldHave(text("Свиная шея")).shouldBe(visible);
-            $("bdi").shouldHave(text("370.00")).shouldBe(visible);
+            $x("//h2[contains(text(),'Свиная шея')]").shouldBe(visible);
+            $x("//bdi[contains(text(),'430.00')]").shouldBe(visible);
         });
         step("Наличие товара Мякоть свинины и его стоимости", () -> {
-            $("h2", 1).shouldHave(text("Мякоть свинины")).shouldBe(visible);
-            $("bdi", 1).shouldHave(text("270.00")).shouldBe(visible);
+            $x("//h2[contains(text(),'Мякоть свинины')]").shouldBe(visible);
+            $x("//bdi[contains(text(),'330.00')]").shouldBe(visible);
         });
         step("Наличие товара Свиная корейка и его стоимости", () -> {
-            $("h2", 2).shouldHave(text("Свиная корейка")).shouldBe(visible);
-            $("bdi", 2).shouldHave(text("350.00")).shouldBe(visible);
+            $x("//h2[contains(text(),'Свиная корейка')]").shouldBe(visible);
+            $("bdi", 2).shouldHave(exactText("430.00 Р")).shouldBe(visible);
         });
         step("Наличие товара Свиные ребра и его стоимости", () -> {
-            $("h2", 3).shouldHave(text("Свиные ребра")).shouldBe(visible);
-            $("bdi", 3).shouldHave(text("350.00")).shouldBe(visible);
+            $x("//h2[contains(text(),'Свиные ребра')]").shouldBe(visible);
+            $x("//bdi[contains(text(),'440.00')]").shouldBe(visible);
         });
-        step("Наличие товара Свиные ребра и его стоимости", () -> {
-            $("h2", 4).shouldHave(text("Люля из свинины")).shouldBe(visible);
-            $("bdi", 4).shouldHave(text("240.00")).shouldBe(visible);
+        step("Наличие товара Люля из свинины", () -> {
+            $x("//h2[contains(text(),'Люля из свинины')]").shouldBe(visible);
+            $x("//bdi[contains(text(),'290.00')]").shouldBe(visible);
         });
-        step("Наличие товара Свиные ребра и его стоимости", () -> {
-            $("h2", 5).shouldHave(text("Ассорти свинины")).shouldBe(visible);
-            $("bdi", 5).shouldHave(text("2,430.00")).shouldBe(visible);
+        step("Наличие товара Ассорти свинины и его стоимости", () -> {
+            $x("//h2[contains(text(),'Ассорти свинины')]").shouldBe(visible);
+            $x("//bdi[contains(text(),'2,900.00')]").shouldBe(visible);
         });
     }
 
