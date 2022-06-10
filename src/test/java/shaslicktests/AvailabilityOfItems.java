@@ -160,29 +160,33 @@ public class AvailabilityOfItems extends TestBase {
         step("Клик на появившийся саджест Ассорти шашлыка", () -> {
             $x("//a[@href='https://shashlik.club/category/blyuda-na-mangale/assorti-shashlyka/']").click();
         });
+        step("наличие кнопок Добавить в корзину у всех товаров категории Выпечка", () -> {
+            $$x("//a[@class='button product_type_simple add_to_cart_button ajax_add_to_cart']")
+                    .shouldHave(size(6));
+        });
         step("Наличие товара Ассорти от шефа и его стоимости", () -> {
-            $("h2").shouldHave(text("Ассорти От шефа")).shouldBe(visible);
-            $("bdi").shouldHave(text("4,150.00")).shouldBe(visible);
+            $x("//h2[contains(text(),'Ассорти От шефа')]").shouldBe(visible);
+            $x("//bdi[contains(text(),'5,200.00')]").shouldBe(visible);
         });
         step("Наличие товара Ассорти свинины и его стоимости", () -> {
-            $("h2", 1).shouldHave(text("Ассорти свинины")).shouldBe(visible);
-            $("bdi", 1).shouldHave(text("2,430.00")).shouldBe(visible);
+            $x("//h2[contains(text(),'Ассорти свинины')]").shouldBe(visible);
+            $x("//bdi[contains(text(),'2,900.00')]").shouldBe(visible);
         });
         step("Наличие товара Ассорти куриное и его стоимости", () -> {
-            $("h2", 2).shouldHave(text("Ассорти куриное")).shouldBe(visible);
-            $("bdi", 2).shouldHave(text("2,100.00")).shouldBe(visible);
+            $x("//h2[contains(text(),'Ассорти куриное')]").shouldBe(visible);
+            $x("//bdi[contains(text(),'2,550.00')]").shouldBe(visible);
         });
         step("Наличие товара Ассорти баранины и его стоимости", () -> {
-            $("h2", 3).shouldHave(text("Ассорти баранины")).shouldBe(visible);
-            $("bdi", 3).shouldHave(text("4,200.00")).shouldBe(visible);
+            $x("//h2[contains(text(),'Ассорти баранины')]").shouldBe(visible);
+            $x("//bdi[contains(text(),'5,400.00')]").shouldBe(visible);
         });
         step("Наличие товара Ассорти мякоти и его стоимости", () -> {
-            $("h2", 4).shouldHave(text("Ассорти мякоти")).shouldBe(visible);
-            $("bdi", 4).shouldHave(text("2,750.00")).shouldBe(visible);
+            $x("//h2[contains(text(),'Ассорти мякоти')]").shouldBe(visible);
+            $x("//bdi[contains(text(),'3,360.00')]").shouldBe(visible);
         });
         step("Наличие товара Ассорти люля и его стоимости", () -> {
-            $("h2", 5).shouldHave(text("Ассорти люля")).shouldBe(visible);
-            $("bdi", 5).shouldHave(text("1,100.00")).shouldBe(visible);
+            $x("//h2[contains(text(),'Ассорти люля')]").shouldBe(visible);
+            $x("//bdi[contains(text(),'1,340.00')]").shouldBe(visible);
         });
     }
 
@@ -202,7 +206,8 @@ public class AvailabilityOfItems extends TestBase {
                     .should(appear).shouldBe(visible);
         });
         step("Клик на Шашлык из баранины из саджест листа для перехода на страницу", () -> {
-            $x("//a[@href='https://shashlik.club/category/blyuda-na-mangale/shashlyk-iz-baraniny/']").scrollTo()
+            $x("//a[@href='https://shashlik.club/category/blyuda-na-mangale/shashlyk-iz-baraniny/']")
+                    .scrollTo()
                     .click();
         });
         step("Наличие товара Мякоть баранины и его стоимости", () -> {
