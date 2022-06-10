@@ -160,7 +160,7 @@ public class AvailabilityOfItems extends TestBase {
         step("Клик на появившийся саджест Ассорти шашлыка", () -> {
             $x("//a[@href='https://shashlik.club/category/blyuda-na-mangale/assorti-shashlyka/']").click();
         });
-        step("наличие кнопок Добавить в корзину у всех товаров категории Выпечка", () -> {
+        step("наличие кнопок Добавить в корзину у всех товаров категории Ассорти шашлыка", () -> {
             $$x("//a[@class='button product_type_simple add_to_cart_button ajax_add_to_cart']")
                     .shouldHave(size(6));
         });
@@ -210,41 +210,41 @@ public class AvailabilityOfItems extends TestBase {
                     .scrollTo()
                     .click();
         });
+        step("наличие кнопок Добавить в корзину у всех товаров категории Шашлык из баранины", () -> {
+            $$x("//a[@class='button product_type_simple add_to_cart_button ajax_add_to_cart']")
+                    .shouldHave(size(8));
+        });
         step("Наличие товара Мякоть баранины и его стоимости", () -> {
-            $("h2").shouldHave(text("Мякоть баранины")).shouldBe(visible);
-            $("bdi").shouldHave(text("540.00 ")).shouldBe(visible);
+            $x("//h2[contains(text(),'Мякоть баранины')]").shouldBe(visible);
+            $x("//bdi[contains(text(),'730.00')]").shouldBe(visible);
         });
         step("Наличие товара Каре ягненка и его стоимости", () -> {
-            $("h2", 1).shouldHave(text("Каре ягненка")).shouldBe(visible);
-            $("bdi", 1).shouldHave(text("800.00")).shouldBe(visible);
+            $x("//h2[contains(text(),'Каре ягненка')]").shouldBe(visible);
+            $x("//bdi[contains(text(),'1,000.00')]").shouldBe(visible);
         });
-        step("Наличие товара Каре ягненка и его стоимости", () -> {
-            $("h2", 2).shouldHave(text("Баранья корейка")).shouldBe(visible);
-            $("bdi", 2).shouldHave(text("560.00")).shouldBe(visible);
+        step("Наличие товара Баранья корейка и его стоимости", () -> {
+            $x("//h2[contains(text(),'Баранья корейка')]").shouldBe(visible);
+            $x("//bdi[contains(text(),'750.00')]").shouldBe(visible);
         });
         step("Наличие товара Шашлык из седла баранины и его стоимости", () -> {
-            $("h2", 3).shouldHave(text("Шашлык из седла баранины")).shouldBe(visible);
-            $("bdi", 3).shouldHave(text("480.00")).shouldBe(visible);
-        });
-        step("Наличие товара Баранье сердце и его стоимости", () -> {
-            $("h2", 4).shouldHave(text("Баранье сердце")).shouldBe(visible);
-            $("bdi", 4).shouldHave(text("380.00")).shouldBe(visible);
+            $x("//h2[contains(text(),'Шашлык из седла баранины')]").shouldBe(visible);
+            $x("//bdi[contains(text(),'650.00')]").shouldBe(visible);
         });
         step("Наличие товара Бараньи ребра и его стоимости", () -> {
-            $("h2", 5).shouldHave(text("Бараньи ребра")).shouldBe(visible);
-            $("bdi", 5).shouldHave(text("360.00")).shouldBe(visible);
+            $x("//h2[contains(text(),'Бараньи ребра')]").shouldBe(visible);
+            $x("//bdi[contains(text(),'500.00')]").shouldBe(visible);
         });
         step("Наличие товара Баранья печень с курдюком и его стоимости", () -> {
-            $("h2", 6).shouldHave(text("Баранья печень с курдюком")).shouldBe(visible);
-            $("bdi", 6).shouldHave(text("350.00")).shouldBe(visible);
+            $x("//h2[contains(text(),'Баранья печень с курдюком')]").shouldBe(visible);
+            $x("//bdi[contains(text(),'450.00')]").shouldBe(visible);
         });
-        step("Наличие товара Баранья печень с курдюком и его стоимости", () -> {
-            $("h2", 7).shouldHave(text("Люля из баранины")).shouldBe(visible);
-            $("bdi", 7).shouldHave(text("300.00")).shouldBe(visible);
+        step("Наличие товара Люля из баранины и его стоимости", () -> {
+            $x("//h2[contains(text(),'Люля из баранины')]").shouldBe(visible);
+            $x("//bdi[contains(text(),'400.00')]").shouldBe(visible);
         });
         step("Наличие товара Ассорти баранины и его стоимости", () -> {
-            $("h2", 8).shouldHave(text("Ассорти баранины")).shouldBe(visible);
-            $("bdi", 8).shouldHave(text("4,200.00")).shouldBe(visible);
+            $x("//h2[contains(text(),'Ассорти баранины')]").shouldBe(visible);
+            $x("//bdi[contains(text(),'5,400.00')]").shouldBe(visible);
         });
     }
 
@@ -265,7 +265,6 @@ public class AvailabilityOfItems extends TestBase {
         });
         step("Клик на Шашлык из свинины из саджест листа", () -> {
             $x("//a[@href='https://shashlik.club/category/blyuda-na-mangale/shashlyk-iz-svininy/']")
-                    .scrollTo()
                     .click();
         });
         step("Наличие товара Свиная шея и его стоимости", () -> {
@@ -305,28 +304,16 @@ public class AvailabilityOfItems extends TestBase {
             Selenide.open("https://shashlik.club/");
         });
         step("Проверяем наличие категории Блюда на мангале", () -> {
-            $(".blocks-gallery-item__caption")
-                    .shouldHave(text("Блюда на Мангале"))
-                    .shouldBe(visible)
-                    .shouldBe(enabled);
+            $x("//a[normalize-space()='Блюда на Мангале']").shouldBe(enabled);
         });
         step("Проверяем наличие категории Салаты и закуски", () -> {
-            $(".blocks-gallery-item__caption", 1)
-                    .shouldHave(text("Салаты и Закуски"))
-                    .shouldBe(visible)
-                    .shouldBe(enabled);
+            $x("//a[normalize-space()='Салаты и Закуски']").shouldBe(enabled);
         });
         step("Проверяем наличие категории Выпечка", () -> {
-            $(".blocks-gallery-item__caption", 2)
-                    .shouldHave(text("Выпечка"))
-                    .shouldBe(visible)
-                    .shouldBe(enabled);
+            $x("//a[normalize-space()='Выпечка']").shouldBe(enabled);
         });
         step("Проверяем наличие категории Наш Партнер ЦС Феникс", () -> {
-            $(".blocks-gallery-item__caption", 3)
-                    .shouldHave(text("Наш Партнер ЦС Феникс"))
-                    .shouldBe(visible)
-                    .shouldBe(enabled);
+            $x("//a[normalize-space()='Наш Партнер ЦС Феникс']").shouldBe(enabled);
         });
     }
 }
