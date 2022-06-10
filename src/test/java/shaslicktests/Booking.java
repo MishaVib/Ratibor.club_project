@@ -3,6 +3,7 @@ package shaslicktests;
 
 import com.codeborne.selenide.Selenide;
 import io.qameta.allure.*;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
@@ -17,6 +18,7 @@ public class Booking extends TestBase {
     @Test
     @Owner("Никита Шутков")
     @Severity(SeverityLevel.NORMAL)
+    @DisplayName("Элементы страницы Забронировать стол")
     @Description(
             "Страница бронирования столика"
     )
@@ -42,6 +44,7 @@ public class Booking extends TestBase {
     @Test
     @Owner("Никита Шутков")
     @Severity(SeverityLevel.MINOR)
+    @DisplayName("Переход по ссылке")
     @Description(
             "Переход по ссылке на сайт Оригинальные Швейцарские часы"
     )
