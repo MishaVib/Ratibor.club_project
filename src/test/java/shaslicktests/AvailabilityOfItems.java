@@ -217,7 +217,6 @@ public class AvailabilityOfItems extends TestBase {
         });
         step("Клик на Шашлык из баранины из саджест листа для перехода на страницу", () -> {
             $x("//a[@href='https://shashlik.club/category/blyuda-na-mangale/shashlyk-iz-baraniny/']")
-                    .scrollTo()
                     .click();
         });
         step("наличие кнопок Добавить в корзину у всех товаров категории Шашлык из баранины", () -> {
