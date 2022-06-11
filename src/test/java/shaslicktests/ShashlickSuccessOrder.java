@@ -14,7 +14,7 @@ public class ShashlickSuccessOrder extends TestBase {
     Faker faker = new Faker(new Locale("ru"));
     String firstName = faker.name().firstName();
     String phoneNumber = faker.phoneNumber().phoneNumber();
-    String address = faker.address().fullAddress();
+    String address = faker.address().streetAddress();
 
 
     @Test
