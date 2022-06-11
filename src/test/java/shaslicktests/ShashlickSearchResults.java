@@ -3,10 +3,12 @@ package shaslicktests;
 import com.codeborne.selenide.logevents.SelenideLogger;
 import io.qameta.allure.*;
 import io.qameta.allure.selenide.AllureSelenide;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
-import org.junit.jupiter.params.provider.ValueSource;
+import pages.MainPage;
 
 import static com.codeborne.selenide.Condition.empty;
 import static com.codeborne.selenide.Condition.text;
@@ -16,41 +18,49 @@ import static io.qameta.allure.Allure.step;
 
 @Tag("regress")
 public class ShashlickSearchResults extends TestBase {
+
+    MainPage mainPage = new MainPage();
+
     @Owner("Никита Шутков")
     @Severity(SeverityLevel.CRITICAL)
     @Description(
-            "Проверка результатов поисковой выдачи"
+            "Проверка результатов поисковой выдачи при валидных значениях"
     )
     @Feature("Поисковая строка")
     @CsvSource({
             "баранина, Мякоть баранины",
             "свиная, Свиная шея",
     })
-    @ParameterizedTest(name = "showing pork and mutton in results of goods")
+    @ParameterizedTest(name = "Результаты выдачи при валидных данных")
 void searchResults(String testData, String expectedText) {
         SelenideLogger.addListener("allure", new AllureSelenide());
         step("Открываем главную страницу", () -> {
+
         open("https://shashlik.club/");
         });
         step("Вбиваем в строку поиска установленные значения", () -> {
+
         $("#woocommerce-product-search-field-0").shouldBe(empty).setValue(testData).pressEnter();
         });
         step("Проверяем, что в результатах поиска есть установленное значение", () -> {
+
         $(".content-area").shouldHave(text(expectedText));
         });
     }
 
-    @ValueSource(strings = {"баранина", "свиная"})
-    @ParameterizedTest(name = "showing pork and mutton in results")
-    void shashlickSearchTest(String testData2) {
-        step("Открываем главную страницу", () -> {
-        open("https://shashlik.club/");
-        });
-        step("Вбиваем в строку поиска установленные значения", () -> {
-        $(".search-field").shouldBe(empty).setValue(testData2).pressEnter();
-        });
-        step("Проверяем, что в результатах поиска есть установленные значения", () -> {
-        $(".content-area").shouldHave(text(testData2));
-        });
+    @Test
+    @Owner("Никита Шутков")
+    @Severity(SeverityLevel.CRITICAL)
+    @Description(
+            "Результат поисковой выдачи без ввода данных"
+    )
+    @Feature("Поисковая строка")
+    @DisplayName("Результат поисковой выдачи без введенных данных")
+
+    void emptyValueInput() {
+        mainPage
+                .openMainPage()
+                .setNullValueInSearchInput();
+
     }
 }

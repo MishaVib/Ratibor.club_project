@@ -34,7 +34,6 @@ public class Booking extends TestBase {
                     .bookingHeaderCheck()
                     .textAboutBookingCheck().phoneNumberCheck()
                     .siteInfo().linkInSiteInfoCheck();
-
         });
     }
 
@@ -49,7 +48,7 @@ public class Booking extends TestBase {
     void deeplink() {
         step("Открыть страницу Забронировать стол", () -> {
             bookingPage.openBookingPage();
-            //Selenide.open("https://shashlik.club/sample-page/");
+
         });
         step("Клик по ссылке", () -> {
             bookingPage.clickBySwissClock();

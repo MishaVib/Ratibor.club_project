@@ -1,62 +1,36 @@
 package helpers;
 
 import com.codeborne.selenide.Configuration;
-import config.ProjectProvider;
-import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.firefox.FirefoxOptions;
-import org.openqa.selenium.opera.OperaOptions;
+import config.ProjectConfig;
+import org.aeonbits.owner.ConfigFactory;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
-import java.util.Properties;
 
 public class DriverSettings {
+    static ProjectConfig ProjectConfig = ConfigFactory.create(ProjectConfig.class);
 
     public static void configure() {
-        Properties properties = System.getProperties();
-        String system = properties.getProperty("properties");
-        if (system == null) {
-            System.setProperty("properties", "local");
-        }
+        String remoteUrl = System.getProperty("remoteUrl", ProjectConfig.remoteUrl());
+        String login = System.getProperty("login", ProjectConfig.login());
+        String password = System.getProperty("pass", ProjectConfig.password());
+        String browser = System.getProperty("browser", ProjectConfig.browser());
+        String version = System.getProperty("browserVersion", ProjectConfig.browserVersion());
+        String size = System.getProperty("browserSize", ProjectConfig.browserSize());
 
-        Configuration.browser = ProjectProvider.config.browser();
-        Configuration.browserVersion = ProjectProvider.config.browserVersion();
-        Configuration.browserSize = ProjectProvider.config.browserSize();
+        String url = "https://" + login + ":" + password + "@" + remoteUrl;
+        Configuration.remote = url;
+        Configuration.browser = browser;
+        Configuration.browserVersion = version;
+        Configuration.browserSize = size;
 
         DesiredCapabilities capabilities = new DesiredCapabilities();
-        ChromeOptions chromeOptions = new ChromeOptions();
-        FirefoxOptions firefoxOptions = new FirefoxOptions();
-        OperaOptions operaOptions = new OperaOptions();
-
-        switch (Configuration.browser) {
-            case "chrome":
-                chromeOptions.addArguments("--no-sandbox");
-                chromeOptions.addArguments("--disable-infobars");
-                chromeOptions.addArguments("--disable-popup-blocking");
-                chromeOptions.addArguments("--disable-notifications");
-                chromeOptions.addArguments("--lang=en-en");
-                capabilities.setCapability(ChromeOptions.CAPABILITY, chromeOptions);
-                break;
-            case "firefox":
-                firefoxOptions.addArguments("--fast-start");
-                firefoxOptions.addArguments("--enable-logging");
-                firefoxOptions.addArguments("--ignore-certificate-errors");
-                firefoxOptions.addArguments("--disable-gpu");
-                capabilities.setCapability(FirefoxOptions.FIREFOX_OPTIONS, firefoxOptions);
-                break;
-            case "opera":
-                operaOptions.addArguments("--disable-gpu");
-                capabilities.setCapability(OperaOptions.CAPABILITY, operaOptions);
-                break;
-        }
-
-        if (ProjectProvider.isRemoteWebDriver()) {
-            capabilities.setCapability("enableVNC", true);
-            capabilities.setCapability("enableVideo", true);
-            Configuration.remote = ProjectProvider.config.remoteDriverUrl();
-        }
-
+        capabilities.setCapability("enableVNC", true);
+        capabilities.setCapability("enableVideo", true);
         Configuration.browserCapabilities = capabilities;
 
+        AllureAttachments.attachAsText("Browser: ", browser);
+        AllureAttachments.attachAsText("Version: ", version);
+        AllureAttachments.attachAsText("Remote Url: ", remoteUrl);
     }
 
 }
