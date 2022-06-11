@@ -16,7 +16,7 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 import static io.qameta.allure.Allure.step;
 
-@Tag("regress")
+
 public class ShashlickSearchResults extends TestBase {
 
     MainPage mainPage = new MainPage();
@@ -32,6 +32,9 @@ public class ShashlickSearchResults extends TestBase {
             "свиная, Свиная шея",
     })
     @ParameterizedTest(name = "Результаты выдачи при валидных данных")
+    @Tag("regress")
+    @Tag("search")
+
 void searchResults(String testData, String expectedText) {
         SelenideLogger.addListener("allure", new AllureSelenide());
         step("Открываем главную страницу", () -> {
@@ -49,6 +52,8 @@ void searchResults(String testData, String expectedText) {
     }
 
     @Test
+    @Tag("acceptance")
+    @Tag("search")
     @Owner("Никита Шутков")
     @Severity(SeverityLevel.CRITICAL)
     @Description(

@@ -69,4 +69,25 @@ task regress_test(type: Test) {
         }
 
         }
+
     }
+task booking_test(type: Test) {
+    useJUnitPlatform {
+        includeTags "booking"
+    }
+}
+task order_test(type: Test) {
+    useJUnitPlatform {
+        includeTags "order"
+    }
+}
+task items_test(type: Test) {
+    useJUnitPlatform {
+        includeTags "items"
+    }
+}
+task search_test(type: Test) {
+    useJUnitPlatform {
+        includeTags "search"
+    }
+}

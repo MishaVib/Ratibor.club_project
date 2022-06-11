@@ -15,6 +15,8 @@ public class Booking extends TestBase {
     BookingPage bookingPage = new BookingPage();
 
     @Test
+    @Tag("acceptance")
+    @Tag("booking")
     @Owner("Никита Шутков")
     @Severity(SeverityLevel.NORMAL)
     @DisplayName("Элементы страницы Забронировать стол")

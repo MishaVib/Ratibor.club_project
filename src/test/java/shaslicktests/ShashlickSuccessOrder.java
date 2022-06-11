@@ -19,6 +19,7 @@ public class ShashlickSuccessOrder extends TestBase {
 
     @Test
     @Tag("acceptance")
+    @Tag("order")
     @Owner("Никита Шутков")
     @Severity(SeverityLevel.BLOCKER)
     @Description(

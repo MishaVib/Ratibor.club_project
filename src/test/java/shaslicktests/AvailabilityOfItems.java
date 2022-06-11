@@ -14,7 +14,7 @@ import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 import static io.qameta.allure.Allure.step;
 
-@Tag("regress")
+
 public class AvailabilityOfItems extends TestBase {
     @Owner("Никита Шутков")
     @Severity(SeverityLevel.NORMAL)
@@ -23,7 +23,9 @@ public class AvailabilityOfItems extends TestBase {
     )
     @Feature("Items")
     @Test
-    @DisplayName("Name of soups items and its price")
+    @Tag("regress")
+    @Tag("items")
+    @DisplayName("Товары категории Суп")
     void borsh() {
         step("Открываем главную страницу", () -> {
             Selenide.open("https://shashlik.club/");
@@ -62,7 +64,9 @@ public class AvailabilityOfItems extends TestBase {
     }
 
     @Test
-    @DisplayName("Name of bakery items and its price")
+    @Tag("regress")
+    @Tag("items")
+    @DisplayName("Товары категории Выпечка")
     @Owner("Никита Шутков")
     @Description("Наличие товаров категории Выпечка с ценой")
     @Feature("Items")
@@ -97,9 +101,11 @@ public class AvailabilityOfItems extends TestBase {
     }
 
     @Test
+    @Tag("regress")
+    @Tag("items")
     @Owner("Никита Шутков")
     @Description("Содержимое саджест листа Блюда на мангале")
-    @DisplayName("Dishes on the grill")
+    @DisplayName("Саджест лист Блюда на мангале")
     @Feature("Items")
     @Severity(SeverityLevel.CRITICAL)
     void assortiment() {
@@ -142,9 +148,11 @@ public class AvailabilityOfItems extends TestBase {
     }
 
     @Test
+    @Tag("regress")
+    @Tag("items")
     @Owner("Никита Шутков")
     @Description("Наличие товаров категории Ассорти шашлыка с ценой")
-    @DisplayName("Assorti of shashlick")
+    @DisplayName("Товары категории Ассорти шашлыка")
     @Feature("Items")
     @Severity(SeverityLevel.NORMAL)
     void assortiShashlick() {
@@ -191,9 +199,11 @@ public class AvailabilityOfItems extends TestBase {
     }
 
     @Test
+    @Tag("regress")
+    @Tag("items")
     @Owner("Никита Шутков")
     @Description("Наличие товаров категории Шашлык из баранины с ценой")
-    @DisplayName("Assorti of baranina")
+    @DisplayName("Товары категории Шашлык из баранины")
     @Feature("Items")
     @Severity(SeverityLevel.NORMAL)
     void shashlickIsBaraniny() {
@@ -249,9 +259,11 @@ public class AvailabilityOfItems extends TestBase {
     }
 
     @Test
+    @Tag("regress")
+    @Tag("items")
     @Owner("Никита Шутков")
     @Description("Наличие товаров категории Шашлык из свинины с ценой")
-    @DisplayName("Assorti of shashlick of svinina")
+    @DisplayName("Товары категории Шашлык из свинины")
     @Feature("Items")
     @Severity(SeverityLevel.NORMAL)
     void shashlickIsSvininy() {
@@ -294,9 +306,11 @@ public class AvailabilityOfItems extends TestBase {
     }
 
     @Test
+    @Tag("regress")
+    @Tag("items")
     @Owner("Никита Шутков")
     @Description("Наличие категории товаров на главной странице не в табе")
-    @DisplayName("display types of items in main id")
+    @DisplayName("Товары на главной странице сайта")
     @Feature("Items")
     @Severity(SeverityLevel.CRITICAL)
     void link_2() {
