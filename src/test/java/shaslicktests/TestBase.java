@@ -3,35 +3,33 @@ package shaslicktests;
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.logevents.SelenideLogger;
+import helpers.AllureAttachments;
+import helpers.DriverSettings;
 import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
-import org.openqa.selenium.remote.DesiredCapabilities;
+
+
+import static com.codeborne.selenide.Selenide.closeWebDriver;
 
 public class TestBase {
     @BeforeAll
     static void beforeAll() {
         Selenide.clearBrowserCookies();
-        Configuration.baseUrl = "https://shashlik.club/";
-        Configuration.browserSize = "1920x1080";
         SelenideLogger.addListener("allure", new AllureSelenide());
-
-        DesiredCapabilities capabilities = new DesiredCapabilities();
-        capabilities.setCapability("enableVNC", true);
-        capabilities.setCapability("enableVideo", true);
-        Configuration.browserCapabilities = capabilities;
-
-        String login = System.getProperty("login");
-        String password = System.getProperty("password");
-        Configuration.remote = "https://" + login + ":" + password + "@" + System.getProperty("remoteBrowser");
+        DriverSettings.configure();
+        Configuration.browser =  "chrome";
+        Configuration.browserVersion= "100.0";
     }
 
-@AfterEach
-void addAttachments() {
-    AttachAllure.screenshotAs("Last screenshot");
-    AttachAllure.pageSource();
-    AttachAllure.browserConsoleLogs();
-    AttachAllure.addVideo();
-    Selenide.closeWebDriver();
-}
-}
+    @AfterEach
+    public void afterTest() {
+
+        AllureAttachments.screenshotAs("Last screenshot");
+        AllureAttachments.pageSource();
+        AllureAttachments.browserConsoleLogs();
+        AllureAttachments.addVideo();
+        closeWebDriver();
+        }
+    }
+

@@ -1,38 +1,61 @@
 package shaslicktests;
 
-import com.codeborne.selenide.Condition;
-import com.codeborne.selenide.logevents.SelenideLogger;
+
 import io.qameta.allure.*;
-import io.qameta.allure.selenide.AllureSelenide;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
-import static com.codeborne.selenide.Selectors.byText;
-import static com.codeborne.selenide.Selenide.*;
+import pages.BookingPage;
+
 import static io.qameta.allure.Allure.step;
 
-public class Booking extends TestBase{
+@Tag("regress")
+public class Booking extends TestBase {
+
+    BookingPage bookingPage = new BookingPage();
+
     @Test
     @Owner("Никита Шутков")
     @Severity(SeverityLevel.NORMAL)
+    @DisplayName("Элементы страницы Забронировать стол")
     @Description(
             "Страница бронирования столика"
     )
     @Feature("Бронь")
     void bookingTable() {
         step("Открываем главную страницу", () -> {
-        open("https://shashlik.club");
+            bookingPage.openMainPage();
         });
         step("Клик на кнопку Забронировать стол", () -> {
-        $(byText("Забронировать стол")).click();
+            bookingPage.buttonClick();
         });
-        step("Проверка текста в разделе бронирования стола", () -> {
-        $(".site-main").shouldHave(Condition.text("Забронировать стол"));
-        $(".site-main").shouldHave(Condition.text("Забронировать стол можно по телефону"));
-        $x("//a[@href='tel:+79302220032']").shouldHave(Condition.text("+7 (930) 222 00 32"))
-                .shouldBe(Condition.visible);
-        $(".site-info").shouldHave(Condition.text(" Просто качественная доставка еды ©"))
-                .shouldBe(Condition.visible);
-        $x("//a[@href='https://original-watch.online/']").shouldHave(Condition.exactText("продать часы"))
-                .shouldBe(Condition.visible);
+        step("Проверка элементов в разделе бронирования стола", () -> {
+            bookingPage
+                    .bookingHeaderCheck()
+                    .textAboutBookingCheck().phoneNumberCheck()
+                    .siteInfo().linkInSiteInfoCheck();
+        });
+    }
+
+    @Test
+    @Owner("Никита Шутков")
+    @Severity(SeverityLevel.MINOR)
+    @DisplayName("Переход по ссылке")
+    @Description(
+            "Переход по ссылке на сайт Оригинальные Швейцарские часы"
+    )
+    @Feature("Ссылка")
+    void deeplink() {
+        step("Открыть страницу Забронировать стол", () -> {
+            bookingPage.openBookingPage();
+
+        });
+        step("Клик по ссылке", () -> {
+            bookingPage.clickBySwissClock();
+        });
+        step("Проверка, что открылся сайт", () -> {
+            bookingPage.swissHeaderCheck();
         });
     }
 }
+

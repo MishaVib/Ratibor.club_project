@@ -1,7 +1,9 @@
-package shaslicktests;
+package helpers;
 
 import com.codeborne.selenide.Selenide;
+import config.ProjectConfig;
 import io.qameta.allure.Attachment;
+import org.aeonbits.owner.ConfigFactory;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.remote.RemoteWebDriver;
@@ -13,7 +15,7 @@ import java.nio.charset.StandardCharsets;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 import static org.openqa.selenium.logging.LogType.BROWSER;
 
-public class AttachAllure {
+public class AllureAttachments {
     @Attachment(value = "{attachName}", type = "text/plain")
     public static String attachAsText(String attachName, String message) {
         return message;
@@ -44,7 +46,8 @@ public class AttachAllure {
     }
 
     public static URL getVideoUrl(String sessionId) {
-        String videoUrl = "https://selenoid.autotests.cloud/video/" + sessionId + ".mp4";
+        ProjectConfig ProjectConfig = ConfigFactory.create(ProjectConfig.class);
+        String videoUrl = ProjectConfig.videoAttachUrl() + sessionId + ".mp4";
 
         try {
             return new URL(videoUrl);
@@ -58,4 +61,7 @@ public class AttachAllure {
         return ((RemoteWebDriver) getWebDriver()).getSessionId().toString();
     }
 
+    public static String getConsoleLogs() {
+        return String.join("\n", Selenide.getWebDriverLogs(BROWSER));
+    }
 }
