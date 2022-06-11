@@ -36,7 +36,6 @@ public class ShashlickSearchResults extends TestBase {
     @Tag("search")
 
 void searchResults(String testData, String expectedText) {
-        SelenideLogger.addListener("allure", new AllureSelenide());
         step("Открываем главную страницу", () -> {
 
         open("https://shashlik.club/");

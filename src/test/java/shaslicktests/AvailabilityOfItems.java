@@ -1,9 +1,7 @@
 package shaslicktests;
 
 import com.codeborne.selenide.Selenide;
-import com.codeborne.selenide.logevents.SelenideLogger;
 import io.qameta.allure.*;
-import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -156,7 +154,6 @@ public class AvailabilityOfItems extends TestBase {
     @Feature("Items")
     @Severity(SeverityLevel.NORMAL)
     void assortiShashlick() {
-        SelenideLogger.addListener("allure", new AllureSelenide());
         step("Открываем главную страницу", () -> {
             Selenide.open("https://shashlik.club/");
         });
