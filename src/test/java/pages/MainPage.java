@@ -3,6 +3,7 @@ package pages;
 import com.codeborne.selenide.SelenideElement;
 
 import static com.codeborne.selenide.Condition.*;
+import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
@@ -10,7 +11,8 @@ public class MainPage {
     SelenideElement
 
             input = $(".search-field"),
-            searchNullResult = $("h1");
+            searchNullResult = $("h1"),
+            linkToSoupPage = $(byText("Супы"));
 
 
     public MainPage openMainPage() {
@@ -22,6 +24,12 @@ public class MainPage {
     public MainPage setNullValueInSearchInput() {
         input.shouldBe(empty).setValue("").pressEnter();
         searchNullResult.shouldHave(text("Результат поиска: “”")).shouldBe(visible);
+
+        return this;
+    }
+
+    public MainPage GoToSoupsPage() {
+        linkToSoupPage.click();
 
         return this;
     }

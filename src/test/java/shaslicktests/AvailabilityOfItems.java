@@ -5,6 +5,8 @@ import io.qameta.allure.*;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import pages.MainPage;
+import pages.SoupsPage;
 
 import static com.codeborne.selenide.CollectionCondition.size;
 import static com.codeborne.selenide.Condition.*;
@@ -14,6 +16,9 @@ import static io.qameta.allure.Allure.step;
 
 
 public class AvailabilityOfItems extends TestBase {
+    MainPage mainPage = new MainPage();
+    SoupsPage soupsPage = new SoupsPage();
+
     @Owner("Никита Шутков")
     @Severity(SeverityLevel.NORMAL)
     @Description(
@@ -26,38 +31,31 @@ public class AvailabilityOfItems extends TestBase {
     @DisplayName("Товары категории Суп")
     void borsh() {
         step("Открываем главную страницу", () -> {
-            Selenide.open("https://shashlik.club/");
+            mainPage.openMainPage();
         });
         step("Переход в раздел Супы", () -> {
-            $(byText("Супы")).click();
+            mainPage.GoToSoupsPage();
         });
         step("наличие кнопок Добавить в корзину у всех товаров категории Супы", () -> {
-            $$x("//a[@class='button product_type_simple add_to_cart_button ajax_add_to_cart']")
-                    .shouldHave(size(6));
+            soupsPage.buttonAdToCartCheck();
         });
         step("Наличие товара Борщ и его стоимости", () -> {
-            $x("//h2[contains(text(),'Борщ')]").shouldBe(visible);
-            $x("//bdi[contains(text(),'320.00')]").shouldBe(visible);
+            soupsPage.BorschCheck();
         });
         step("Наличие товара Уха по-царски и его стоимости", () -> {
-            $x("//h2[contains(text(),'Уха по-царски')]").shouldBe(visible);
-            $x("//bdi[contains(text(),'420.00')]").shouldBe(visible);
+           soupsPage.soupFishCkeck();
         });
         step("Наличие товара Солянка и его стоимости", () -> {
-            $x("//h2[contains(text(),'Солянка')]").shouldBe(visible);
-            $x("//bdi[contains(text(),'400.00')]").shouldBe(visible);
+          soupsPage.soupSolyankaCheck();
         });
         step("Наличие товара Суп куриный и его стоимости", () -> {
-            $x("//h2[contains(text(),'Суп куриный')]").shouldBe(visible);
-            $x("//bdi[contains(text(),'250.00')]").shouldBe(visible);
+            soupsPage.soupChickenCheck();
         });
         step("Наличие товара Харчо и его стоимости", () -> {
-            $x("//h2[contains(text(),'Харчо')]").shouldBe(visible);
-            $("bdi", 4).shouldHave(exactText("320.00 Р")).shouldBe(visible);
+            soupsPage.soupHarchoCheck();
         });
         step("Наличие товара Крем суп и его стоимости", () -> {
-            $x("//h2[contains(text(),'Крем суп с шампиньонами')]").shouldBe(visible);
-            $x("//bdi[contains(text(),'360.00')]").shouldBe(visible);
+            soupsPage.creamSoupCheck();
         });
     }
 
