@@ -5,12 +5,13 @@ import io.qameta.allure.*;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import pages.AssortedKebabPage;
+import pages.BakeryPage;
 import pages.MainPage;
 import pages.SoupsPage;
 
 import static com.codeborne.selenide.CollectionCondition.size;
 import static com.codeborne.selenide.Condition.*;
-import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 import static io.qameta.allure.Allure.step;
 
@@ -18,6 +19,8 @@ import static io.qameta.allure.Allure.step;
 public class AvailabilityOfItems extends TestBase {
     MainPage mainPage = new MainPage();
     SoupsPage soupsPage = new SoupsPage();
+    BakeryPage bakeryPage = new BakeryPage();
+    AssortedKebabPage assortedKebabPage = new AssortedKebabPage();
 
     @Owner("Никита Шутков")
     @Severity(SeverityLevel.NORMAL)
@@ -34,7 +37,7 @@ public class AvailabilityOfItems extends TestBase {
             mainPage.openMainPage();
         });
         step("Переход в раздел Супы", () -> {
-            mainPage.GoToSoupsPage();
+            mainPage.goToSoupsPage();
         });
         step("наличие кнопок Добавить в корзину у всех товаров категории Супы", () -> {
             soupsPage.buttonAdToCartCheck();
@@ -69,30 +72,25 @@ public class AvailabilityOfItems extends TestBase {
     @Severity(SeverityLevel.NORMAL)
     void vypechka() {
         step("Открываем главную страницу", () -> {
-            Selenide.open("https://shashlik.club/");
+            mainPage.openMainPage();
         });
         step("Переход в раздел Выпечка", () -> {
-            $(byText("Выпечка")).click();
+            mainPage.goToBakeryPage();
         });
         step("наличие кнопок Добавить в корзину у всех товаров категории Выпечка", () -> {
-            $$x("//a[@class='button product_type_simple add_to_cart_button ajax_add_to_cart']")
-                    .shouldHave(size(4));
+            bakeryPage.bakeryButtonAddToCartCheck();
         });
         step("Наличие товара Хачапури по Аджарски и его стоимости", () -> {
-            $x("//h2[contains(text(),'Хачапури по Аджарски')]").shouldBe(visible);
-            $x("//bdi[contains(text(),'350.00')]").shouldBe(visible);
+            bakeryPage.hachapuriCheck();
         });
         step("Наличие товара Хачапури по Аджарски с двумя яйцами его стоимости", () -> {
-            $x("//h2[contains(text(),'Хачапури по Аджарски с двумя яйцами')]").shouldBe(visible);
-            $x("//bdi[contains(text(),'470.00')]").shouldBe(visible);
+            bakeryPage.hachapuriWithTwoEggsCheck();
         });
         step("Наличие товара Хачапури по Имеретински и его стоимости", () -> {
-            $x("//h2[contains(text(),'Хачапури по Имеретински')]").shouldBe(visible);
-            $x("//bdi[contains(text(),'400.00')]").shouldBe(visible);
+          bakeryPage.hachapuriImretinckyCheck();
         });
         step("Наличие товара Хачапури по Мегрельски и его стоимости", () -> {
-            $x("//h2[contains(text(),'Хачапури по Мегрельски')]").shouldBe(visible);
-            $x("//bdi[contains(text(),'450.00')]").shouldBe(visible);
+            bakeryPage.hachapuriMegrelskyCheck();
         });
     }
 
@@ -106,7 +104,7 @@ public class AvailabilityOfItems extends TestBase {
     @Severity(SeverityLevel.CRITICAL)
     void assortiment() {
         step("Открываем главную страницу", () -> {
-            Selenide.open("https://shashlik.club/");
+            mainPage.openMainPage();
         });
         step("Саджест лист в верхнем меню скрыт до наведения курсора на Блюда на мангале", () -> {
             $x("//a[@href='https://shashlik.club/category/blyuda-na-mangale/assorti-shashlyka/']")
@@ -153,7 +151,7 @@ public class AvailabilityOfItems extends TestBase {
     @Severity(SeverityLevel.NORMAL)
     void assortiShashlick() {
         step("Открываем главную страницу", () -> {
-            Selenide.open("https://shashlik.club/");
+            mainPage.openMainPage();
         });
         step("Навести курсор на Блюда на мангале для появления саджест листа", () -> {
             $x("//a[@href='https://shashlik.club/category/blyuda-na-mangale/']").hover();
@@ -164,32 +162,25 @@ public class AvailabilityOfItems extends TestBase {
             $x("//a[@href='https://shashlik.club/category/blyuda-na-mangale/assorti-shashlyka/']").click();
         });
         step("наличие кнопок Добавить в корзину у всех товаров категории Ассорти шашлыка", () -> {
-            $$x("//a[@class='button product_type_simple add_to_cart_button ajax_add_to_cart']")
-                    .shouldHave(size(6));
+            assortedKebabPage.assortedKebabButtonsAddToCartCheck();
         });
         step("Наличие товара Ассорти от шефа и его стоимости", () -> {
-            $x("//h2[contains(text(),'Ассорти От шефа')]").shouldBe(visible);
-            $x("//bdi[contains(text(),'5,200.00')]").shouldBe(visible);
+            assortedKebabPage.assortyFromTheChiefCheck();
         });
         step("Наличие товара Ассорти свинины и его стоимости", () -> {
-            $x("//h2[contains(text(),'Ассорти свинины')]").shouldBe(visible);
-            $x("//bdi[contains(text(),'2,900.00')]").shouldBe(visible);
+            assortedKebabPage.assortedPorkCheck();
         });
         step("Наличие товара Ассорти куриное и его стоимости", () -> {
-            $x("//h2[contains(text(),'Ассорти куриное')]").shouldBe(visible);
-            $x("//bdi[contains(text(),'2,550.00')]").shouldBe(visible);
+            assortedKebabPage.assortedChickenCheck();
         });
         step("Наличие товара Ассорти баранины и его стоимости", () -> {
-            $x("//h2[contains(text(),'Ассорти баранины')]").shouldBe(visible);
-            $x("//bdi[contains(text(),'5,400.00')]").shouldBe(visible);
+            assortedKebabPage.assortedLambCheck();
         });
         step("Наличие товара Ассорти мякоти и его стоимости", () -> {
-            $x("//h2[contains(text(),'Ассорти мякоти')]").shouldBe(visible);
-            $x("//bdi[contains(text(),'3,360.00')]").shouldBe(visible);
+            assortedKebabPage.assortedFleshCheck();
         });
         step("Наличие товара Ассорти люля и его стоимости", () -> {
-            $x("//h2[contains(text(),'Ассорти люля')]").shouldBe(visible);
-            $x("//bdi[contains(text(),'1,340.00')]").shouldBe(visible);
+           assortedKebabPage.assortedLulaKebabCheck();
         });
     }
 
@@ -203,7 +194,7 @@ public class AvailabilityOfItems extends TestBase {
     @Severity(SeverityLevel.NORMAL)
     void shashlickIsBaraniny() {
         step("Открываем главную страницу", () -> {
-            Selenide.open("https://shashlik.club/");
+            mainPage.openMainPage();
         });
         step("Навести курсор на Блюда на мангале для появления саджест листа", () -> {
             $x("//a[@href='https://shashlik.club/category/blyuda-na-mangale/']").hover();
@@ -262,7 +253,7 @@ public class AvailabilityOfItems extends TestBase {
     @Severity(SeverityLevel.NORMAL)
     void shashlickIsSvininy() {
         step("Открываем главную страницу", () -> {
-            Selenide.open("https://shashlik.club/");
+            mainPage.openMainPage();
         });
         step("Навести курсор на Блюда на мангале для появления саджест листа", () -> {
             $x("//a[@href='https://shashlik.club/category/blyuda-na-mangale/']").hover();
@@ -309,19 +300,19 @@ public class AvailabilityOfItems extends TestBase {
     @Severity(SeverityLevel.CRITICAL)
     void link_2() {
         step("Открываем главную страницу", () -> {
-            Selenide.open("https://shashlik.club/");
+            mainPage.openMainPage();
         });
         step("Проверяем наличие категории Блюда на мангале", () -> {
-            $x("//a[normalize-space()='Блюда на Мангале']").shouldBe(enabled);
+            mainPage.dishesOnGrillCheck();
         });
         step("Проверяем наличие категории Салаты и закуски", () -> {
-            $x("//a[normalize-space()='Салаты и Закуски']").shouldBe(enabled);
+            mainPage.saladsCheck();
         });
         step("Проверяем наличие категории Выпечка", () -> {
-            $x("//a[normalize-space()='Выпечка']").shouldBe(enabled);
+            mainPage.bakeryCheck();
         });
         step("Проверяем наличие категории Наш Партнер ЦС Феникс", () -> {
-            $x("//a[normalize-space()='Наш Партнер ЦС Феникс']").shouldBe(enabled);
+            mainPage.ourPartnerCheck();
         });
     }
 }
