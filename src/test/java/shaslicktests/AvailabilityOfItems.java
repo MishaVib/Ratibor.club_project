@@ -1,6 +1,6 @@
 package shaslicktests;
 
-import com.codeborne.selenide.Selenide;
+
 import io.qameta.allure.*;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
@@ -46,10 +46,10 @@ public class AvailabilityOfItems extends TestBase {
             soupsPage.BorschCheck();
         });
         step("Наличие товара Уха по-царски и его стоимости", () -> {
-           soupsPage.soupFishCkeck();
+            soupsPage.soupFishCkeck();
         });
         step("Наличие товара Солянка и его стоимости", () -> {
-          soupsPage.soupSolyankaCheck();
+            soupsPage.soupSolyankaCheck();
         });
         step("Наличие товара Суп куриный и его стоимости", () -> {
             soupsPage.soupChickenCheck();
@@ -87,7 +87,7 @@ public class AvailabilityOfItems extends TestBase {
             bakeryPage.hachapuriWithTwoEggsCheck();
         });
         step("Наличие товара Хачапури по Имеретински и его стоимости", () -> {
-          bakeryPage.hachapuriImretinckyCheck();
+            bakeryPage.hachapuriImretinckyCheck();
         });
         step("Наличие товара Хачапури по Мегрельски и его стоимости", () -> {
             bakeryPage.hachapuriMegrelskyCheck();
@@ -180,7 +180,7 @@ public class AvailabilityOfItems extends TestBase {
             assortedKebabPage.assortedFleshCheck();
         });
         step("Наличие товара Ассорти люля и его стоимости", () -> {
-           assortedKebabPage.assortedLulaKebabCheck();
+            assortedKebabPage.assortedLulaKebabCheck();
         });
     }
 
