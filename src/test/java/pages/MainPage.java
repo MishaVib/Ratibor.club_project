@@ -19,8 +19,12 @@ public class MainPage {
             ourPartner = $x("//a[normalize-space()='Наш Партнер ЦС Феникс']"),
             suggestListLambKebab = $x("//a[@href='https://shashlik.club/category/blyuda-na-mangale/shashlyk-iz-baraniny/']"),
             dishesOnGrillSuggestList = $x("//a[@href='https://shashlik.club/category/blyuda-na-mangale/']"),
-            suggestListAssortedKebab = $x("//a[@href='https://shashlik.club/category/blyuda-na-mangale/assorti-shashlyka/']");
-
+            suggestListAssortedKebab = $x("//a[@href='https://shashlik.club/category/blyuda-na-mangale/assorti-shashlyka/']"),
+            suggestListPorkKebab = $x("//a[@href='https://shashlik.club/category/blyuda-na-mangale/shashlyk-iz-svininy/']"),
+            suggestListBeefKebab = $x("//a[@href='https://shashlik.club/category/blyuda-na-mangale/shashlyk-iz-telyatiny/']"),
+            suggestListChickenKebab = $x("//a[@href='https://shashlik.club/category/blyuda-na-mangale/shashlyk-iz-kuritsy/']"),
+            suggestListFishKebab = $x("//a[@href='https://shashlik.club/category/blyuda-na-mangale/shashlyk-iz-ryby/']"),
+            suggestListSideDishes = $x("//a[@href='https://shashlik.club/category/garniry/']");
 
 
     public MainPage openMainPage() {
@@ -78,12 +82,14 @@ public class MainPage {
         return this;
 
     }
+
     public MainPage hoverLambKebabFromSuggestList() {
         dishesOnGrillSuggestList.hover();
         suggestListLambKebab.should(appear).shouldBe(visible);
 
         return this;
     }
+
     public MainPage hoverAssortedKebabFromSuggestList() {
         dishesOnGrillSuggestList.hover();
         suggestListAssortedKebab.should(appear).shouldBe(visible);
@@ -91,5 +97,35 @@ public class MainPage {
         return this;
     }
 
+    public MainPage checkSuggestListIsHidden() {
+        suggestListAssortedKebab.shouldNot(appear).shouldBe(hidden);
+        suggestListLambKebab.shouldNot(appear).shouldBe(hidden);
+        suggestListPorkKebab.shouldNot(appear).shouldBe(hidden);
+        suggestListBeefKebab.shouldNot(appear).shouldBe(hidden);
+        suggestListChickenKebab.shouldNot(appear).shouldBe(hidden);
+        suggestListFishKebab.shouldNot(appear).shouldBe(hidden);
+        suggestListSideDishes.shouldNot(appear).shouldBe(hidden);
+
+        return this;
+    }
+
+    public MainPage checkSuggestListShouldAppear() {
+        dishesOnGrillSuggestList.hover();
+        suggestListAssortedKebab.should(appear).shouldBe(enabled);
+        suggestListLambKebab.should(appear).shouldBe(enabled);
+        suggestListPorkKebab.should(appear).shouldBe(enabled);
+        suggestListBeefKebab.should(appear).shouldBe(enabled);
+        suggestListChickenKebab.should(appear).shouldBe(enabled);
+        suggestListFishKebab.should(appear).shouldBe(enabled);
+        suggestListSideDishes.should(appear).shouldBe(enabled);
+
+        return this;
+    }
+
+    public MainPage clickAssortedKebabFromSuggestList() {
+        suggestListAssortedKebab.click();
+
+        return this;
+    }
 
 }

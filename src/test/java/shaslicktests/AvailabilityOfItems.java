@@ -105,37 +105,10 @@ public class AvailabilityOfItems extends TestBase {
             mainPage.openMainPage();
         });
         step("Саджест лист в верхнем меню скрыт до наведения курсора на Блюда на мангале", () -> {
-            $x("//a[@href='https://shashlik.club/category/blyuda-na-mangale/assorti-shashlyka/']")
-                    .shouldNot(appear).shouldBe(hidden);
-            $x("//a[@href='https://shashlik.club/category/blyuda-na-mangale/shashlyk-iz-baraniny/']")
-                    .shouldNot(appear).shouldBe(hidden);
-            $x("//a[@href='https://shashlik.club/category/blyuda-na-mangale/shashlyk-iz-svininy/']")
-                    .shouldNot(appear).shouldBe(hidden);
-            $x("//a[@href='https://shashlik.club/category/blyuda-na-mangale/shashlyk-iz-telyatiny/']")
-                    .shouldNot(appear).shouldBe(hidden);
-            $x("//a[@href='https://shashlik.club/category/blyuda-na-mangale/shashlyk-iz-kuritsy/']")
-                    .shouldNot(appear).shouldBe(hidden);
-            $x("//a[@href='https://shashlik.club/category/blyuda-na-mangale/shashlyk-iz-ryby/']")
-                    .shouldNot(appear).shouldBe(hidden);
-            $x("//a[@href='https://shashlik.club/category/garniry/']")
-                    .shouldNot(appear).shouldBe(hidden);
+            mainPage.checkSuggestListIsHidden();
         });
         step("При наведении курсора на Блюда на мангале в верхнем меню саджест лист появляется", () -> {
-            $x("//a[@href='https://shashlik.club/category/blyuda-na-mangale/']").hover();
-            $x("//a[@href='https://shashlik.club/category/blyuda-na-mangale/assorti-shashlyka/']")
-                    .should(appear).shouldBe(enabled);
-            $x("//a[@href='https://shashlik.club/category/blyuda-na-mangale/shashlyk-iz-baraniny/']")
-                    .should(appear).shouldBe(enabled);
-            $x("//a[@href='https://shashlik.club/category/blyuda-na-mangale/shashlyk-iz-svininy/']")
-                    .should(appear).shouldBe(enabled);
-            $x("//a[@href='https://shashlik.club/category/blyuda-na-mangale/shashlyk-iz-telyatiny/']")
-                    .should(appear).shouldBe(enabled);
-            $x("//a[@href='https://shashlik.club/category/blyuda-na-mangale/shashlyk-iz-kuritsy/']")
-                    .should(appear).shouldBe(enabled);
-            $x("//a[@href='https://shashlik.club/category/blyuda-na-mangale/shashlyk-iz-ryby/']")
-                    .should(appear).shouldBe(enabled);
-            $x("//a[@href='https://shashlik.club/category/garniry/']")
-                    .should(appear).shouldBe(enabled);
+            mainPage.checkSuggestListShouldAppear();
         });
     }
 
@@ -155,7 +128,7 @@ public class AvailabilityOfItems extends TestBase {
             mainPage.hoverAssortedKebabFromSuggestList();
         });
         step("Клик на появившийся саджест Ассорти шашлыка", () -> {
-            $x("//a[@href='https://shashlik.club/category/blyuda-na-mangale/assorti-shashlyka/']").click();
+           mainPage.clickAssortedKebabFromSuggestList();
         });
         step("наличие кнопок Добавить в корзину у всех товаров категории Ассорти шашлыка", () -> {
             assortedKebabPage.assortedKebabButtonsAddToCartCheck();
