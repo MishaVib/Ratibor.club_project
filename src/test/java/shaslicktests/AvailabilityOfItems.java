@@ -7,9 +7,9 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import pages.*;
 
-import static com.codeborne.selenide.CollectionCondition.size;
 import static com.codeborne.selenide.Condition.*;
-import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$x;
 import static io.qameta.allure.Allure.step;
 
 
@@ -152,9 +152,7 @@ public class AvailabilityOfItems extends TestBase {
             mainPage.openMainPage();
         });
         step("Навести курсор на Блюда на мангале для появления саджест листа", () -> {
-            $x("//a[@href='https://shashlik.club/category/blyuda-na-mangale/']").hover();
-            $x("//a[@href='https://shashlik.club/category/blyuda-na-mangale/assorti-shashlyka/']")
-                    .should(appear).shouldBe(visible);
+            mainPage.hoverAssortedKebabFromSuggestList();
         });
         step("Клик на появившийся саджест Ассорти шашлыка", () -> {
             $x("//a[@href='https://shashlik.club/category/blyuda-na-mangale/assorti-shashlyka/']").click();

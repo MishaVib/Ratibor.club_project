@@ -18,7 +18,8 @@ public class MainPage {
             bakery = $x("//a[normalize-space()='Выпечка']"),
             ourPartner = $x("//a[normalize-space()='Наш Партнер ЦС Феникс']"),
             suggestListLambKebab = $x("//a[@href='https://shashlik.club/category/blyuda-na-mangale/shashlyk-iz-baraniny/']"),
-            dishesOnGrillSuggestList = $x("//a[@href='https://shashlik.club/category/blyuda-na-mangale/']");
+            dishesOnGrillSuggestList = $x("//a[@href='https://shashlik.club/category/blyuda-na-mangale/']"),
+            suggestListAssortedKebab = $x("//a[@href='https://shashlik.club/category/blyuda-na-mangale/assorti-shashlyka/']");
 
 
 
@@ -80,6 +81,12 @@ public class MainPage {
     public MainPage hoverLambKebabFromSuggestList() {
         dishesOnGrillSuggestList.hover();
         suggestListLambKebab.should(appear).shouldBe(visible);
+
+        return this;
+    }
+    public MainPage hoverAssortedKebabFromSuggestList() {
+        dishesOnGrillSuggestList.hover();
+        suggestListAssortedKebab.should(appear).shouldBe(visible);
 
         return this;
     }
