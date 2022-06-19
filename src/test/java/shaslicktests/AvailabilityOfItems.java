@@ -5,10 +5,7 @@ import io.qameta.allure.*;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
-import pages.AssortedKebabPage;
-import pages.BakeryPage;
-import pages.MainPage;
-import pages.SoupsPage;
+import pages.*;
 
 import static com.codeborne.selenide.CollectionCondition.size;
 import static com.codeborne.selenide.Condition.*;
@@ -21,6 +18,7 @@ public class AvailabilityOfItems extends TestBase {
     SoupsPage soupsPage = new SoupsPage();
     BakeryPage bakeryPage = new BakeryPage();
     AssortedKebabPage assortedKebabPage = new AssortedKebabPage();
+    LambKebabPage lambKebabPage = new LambKebabPage();
 
     @Owner("Никита Шутков")
     @Severity(SeverityLevel.NORMAL)
@@ -197,49 +195,37 @@ public class AvailabilityOfItems extends TestBase {
             mainPage.openMainPage();
         });
         step("Навести курсор на Блюда на мангале для появления саджест листа", () -> {
-            $x("//a[@href='https://shashlik.club/category/blyuda-na-mangale/']").hover();
-            $x("//a[@href='https://shashlik.club/category/blyuda-na-mangale/shashlyk-iz-baraniny/']")
-                    .should(appear).shouldBe(visible);
+            mainPage.hoverLambKebabFromSuggestList();
         });
         step("Клик на Шашлык из баранины из саджест листа для перехода на страницу", () -> {
-            $x("//a[@href='https://shashlik.club/category/blyuda-na-mangale/shashlyk-iz-baraniny/']")
-                    .click();
+            mainPage.clickLambKebabFromSuggestList();
         });
         step("наличие кнопок Добавить в корзину у всех товаров категории Шашлык из баранины", () -> {
-            $$x("//a[@class='button product_type_simple add_to_cart_button ajax_add_to_cart']")
-                    .shouldHave(size(8));
+            lambKebabPage.checkButtonsAddToCart();
         });
         step("Наличие товара Мякоть баранины и его стоимости", () -> {
-            $x("//h2[contains(text(),'Мякоть баранины')]").shouldBe(visible);
-            $x("//bdi[contains(text(),'730.00')]").shouldBe(visible);
+           lambKebabPage.checkItemLambFlesh();
         });
         step("Наличие товара Каре ягненка и его стоимости", () -> {
-            $x("//h2[contains(text(),'Каре ягненка')]").shouldBe(visible);
-            $x("//bdi[contains(text(),'1,000.00')]").shouldBe(visible);
+            lambKebabPage.checkItemRackOfLamb();
         });
         step("Наличие товара Баранья корейка и его стоимости", () -> {
-            $x("//h2[contains(text(),'Баранья корейка')]").shouldBe(visible);
-            $x("//bdi[contains(text(),'750.00')]").shouldBe(visible);
+           lambKebabPage.checkItemLambLoin();
         });
         step("Наличие товара Шашлык из седла баранины и его стоимости", () -> {
-            $x("//h2[contains(text(),'Шашлык из седла баранины')]").shouldBe(visible);
-            $x("//bdi[contains(text(),'650.00')]").shouldBe(visible);
+            lambKebabPage.checkItemLambSaddleKebab();
         });
         step("Наличие товара Бараньи ребра и его стоимости", () -> {
-            $x("//h2[contains(text(),'Бараньи ребра')]").shouldBe(visible);
-            $x("//bdi[contains(text(),'500.00')]").shouldBe(visible);
+           lambKebabPage.checkItemLambRibs();
         });
         step("Наличие товара Баранья печень с курдюком и его стоимости", () -> {
-            $x("//h2[contains(text(),'Баранья печень с курдюком')]").shouldBe(visible);
-            $x("//bdi[contains(text(),'450.00')]").shouldBe(visible);
+            lambKebabPage.checkItemLambLiver();
         });
         step("Наличие товара Люля из баранины и его стоимости", () -> {
-            $x("//h2[contains(text(),'Люля из баранины')]").shouldBe(visible);
-            $x("//bdi[contains(text(),'400.00')]").shouldBe(visible);
+            lambKebabPage.checkLulyaFromLamb();
         });
         step("Наличие товара Ассорти баранины и его стоимости", () -> {
-            $x("//h2[contains(text(),'Ассорти баранины')]").shouldBe(visible);
-            $x("//bdi[contains(text(),'5,400.00')]").shouldBe(visible);
+            lambKebabPage.checkAssortedKebab();
         });
     }
 
