@@ -24,7 +24,12 @@ public class MainPage {
             suggestListBeefKebab = $x("//a[@href='https://shashlik.club/category/blyuda-na-mangale/shashlyk-iz-telyatiny/']"),
             suggestListChickenKebab = $x("//a[@href='https://shashlik.club/category/blyuda-na-mangale/shashlyk-iz-kuritsy/']"),
             suggestListFishKebab = $x("//a[@href='https://shashlik.club/category/blyuda-na-mangale/shashlyk-iz-ryby/']"),
-            suggestListSideDishes = $x("//a[@href='https://shashlik.club/category/garniry/']");
+            suggestListSideDishes = $x("//a[@href='https://shashlik.club/category/garniry/']"),
+            telephone = $(".tphone"),
+            header = $("#primary");
+
+
+
 
 
     public MainPage openMainPage() {
@@ -135,6 +140,17 @@ public class MainPage {
     public MainPage hoverPorkKebabFromSuggestList() {
         dishesOnGrillSuggestList.hover();
         suggestListPorkKebab.should(appear).shouldBe(enabled);
+
+        return this;
+    }
+    public MainPage headerAndPhoneCheck() {
+        header.shouldHave(text("Шашлык от кафе Ратибор"));
+        telephone.shouldHave(text("+7 (930) 222 00 32"));
+
+        return this;
+    }
+    public MainPage clickDishesOnGrill() {
+        dishesOnGrillSuggestList.click();
 
         return this;
     }

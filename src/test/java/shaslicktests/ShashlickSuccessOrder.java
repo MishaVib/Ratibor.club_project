@@ -4,10 +4,11 @@ import com.github.javafaker.Faker;
 import io.qameta.allure.*;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import pages.MainPage;
+
 import java.util.Locale;
 import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.*;
-import static com.codeborne.selenide.Condition.text;
 import static io.qameta.allure.Allure.step;
 
 public class ShashlickSuccessOrder extends TestBase {
@@ -15,6 +16,7 @@ public class ShashlickSuccessOrder extends TestBase {
     String firstName = faker.name().firstName();
     String phoneNumber = faker.phoneNumber().phoneNumber();
     String address = faker.address().streetAddress();
+    MainPage mainPage = new MainPage();
 
 
     @Test
@@ -28,14 +30,13 @@ public class ShashlickSuccessOrder extends TestBase {
     @Feature("Оформление заказа")
     void successOrder() {
         step("Открываем главную страницу", () -> {
-            Selenide.open("https://shashlik.club/");
+            mainPage.openMainPage();
         });
         step("Наличие номера телефона и заголовка", () -> {
-        $("#primary").shouldHave(text("Шашлык от кафе Ратибор"));
-        $(".tphone").shouldHave(text("+7 (930) 222 00 32"));
+        mainPage.headerAndPhoneCheck();
         });
         step("Переход в раздел блюда на мангале", () -> {
-        $("#menu-item-489").click();
+        mainPage.clickDishesOnGrill();
         });
         step("Переход в товар Свиная корейка и добавляем одну штуку в корзину", () -> {
         $x("//a[@href='https://shashlik.club/meny/blyuda-na-mangale/svinaya-koreyka/']").click();
