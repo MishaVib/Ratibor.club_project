@@ -7,9 +7,6 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import pages.*;
 
-import static com.codeborne.selenide.Condition.*;
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.$x;
 import static io.qameta.allure.Allure.step;
 
 
@@ -19,6 +16,7 @@ public class AvailabilityOfItems extends TestBase {
     BakeryPage bakeryPage = new BakeryPage();
     AssortedKebabPage assortedKebabPage = new AssortedKebabPage();
     LambKebabPage lambKebabPage = new LambKebabPage();
+    PorkKebabPage porkKebabPage = new PorkKebabPage();
 
     @Owner("Никита Шутков")
     @Severity(SeverityLevel.NORMAL)
@@ -128,7 +126,7 @@ public class AvailabilityOfItems extends TestBase {
             mainPage.hoverAssortedKebabFromSuggestList();
         });
         step("Клик на появившийся саджест Ассорти шашлыка", () -> {
-           mainPage.clickAssortedKebabFromSuggestList();
+            mainPage.clickAssortedKebabFromSuggestList();
         });
         step("наличие кнопок Добавить в корзину у всех товаров категории Ассорти шашлыка", () -> {
             assortedKebabPage.assortedKebabButtonsAddToCartCheck();
@@ -175,19 +173,19 @@ public class AvailabilityOfItems extends TestBase {
             lambKebabPage.checkButtonsAddToCart();
         });
         step("Наличие товара Мякоть баранины и его стоимости", () -> {
-           lambKebabPage.checkItemLambFlesh();
+            lambKebabPage.checkItemLambFlesh();
         });
         step("Наличие товара Каре ягненка и его стоимости", () -> {
             lambKebabPage.checkItemRackOfLamb();
         });
         step("Наличие товара Баранья корейка и его стоимости", () -> {
-           lambKebabPage.checkItemLambLoin();
+            lambKebabPage.checkItemLambLoin();
         });
         step("Наличие товара Шашлык из седла баранины и его стоимости", () -> {
             lambKebabPage.checkItemLambSaddleKebab();
         });
         step("Наличие товара Бараньи ребра и его стоимости", () -> {
-           lambKebabPage.checkItemLambRibs();
+            lambKebabPage.checkItemLambRibs();
         });
         step("Наличие товара Баранья печень с курдюком и его стоимости", () -> {
             lambKebabPage.checkItemLambLiver();
@@ -213,37 +211,31 @@ public class AvailabilityOfItems extends TestBase {
             mainPage.openMainPage();
         });
         step("Навести курсор на Блюда на мангале для появления саджест листа", () -> {
-            $x("//a[@href='https://shashlik.club/category/blyuda-na-mangale/']").hover();
-            $x("//a[@href='https://shashlik.club/category/blyuda-na-mangale/shashlyk-iz-svininy/']")
-                    .should(appear).shouldBe(enabled);
+            mainPage.hoverPorkKebabFromSuggestList();
         });
         step("Клик на Шашлык из свинины из саджест листа", () -> {
-            $x("//a[@href='https://shashlik.club/category/blyuda-na-mangale/shashlyk-iz-svininy/']")
-                    .click();
+            mainPage.clickPorkKebabFromSuggestList();
+        });
+        step("наличие кнопок Добавить в корзину у всех товаров категории Шашлык из баранины", () -> {
+            porkKebabPage.checkButtonsAddToCart();
         });
         step("Наличие товара Свиная шея и его стоимости", () -> {
-            $x("//h2[contains(text(),'Свиная шея')]").shouldBe(visible);
-            $x("//bdi[contains(text(),'430.00')]").shouldBe(visible);
+            porkKebabPage.checkPorkNeck();
         });
         step("Наличие товара Мякоть свинины и его стоимости", () -> {
-            $x("//h2[contains(text(),'Мякоть свинины')]").shouldBe(visible);
-            $x("//bdi[contains(text(),'330.00')]").shouldBe(visible);
+            porkKebabPage.checkPorkFlesh();
         });
         step("Наличие товара Свиная корейка и его стоимости", () -> {
-            $x("//h2[contains(text(),'Свиная корейка')]").shouldBe(visible);
-            $("bdi", 2).shouldHave(exactText("430.00 Р")).shouldBe(visible);
+            porkKebabPage.checkPorkLoin();
         });
         step("Наличие товара Свиные ребра и его стоимости", () -> {
-            $x("//h2[contains(text(),'Свиные ребра')]").shouldBe(visible);
-            $x("//bdi[contains(text(),'440.00')]").shouldBe(visible);
+            porkKebabPage.checkPorkRibs();
         });
         step("Наличие товара Люля из свинины", () -> {
-            $x("//h2[contains(text(),'Люля из свинины')]").shouldBe(visible);
-            $x("//bdi[contains(text(),'290.00')]").shouldBe(visible);
+            porkKebabPage.checkLulyaFromPork();
         });
         step("Наличие товара Ассорти свинины и его стоимости", () -> {
-            $x("//h2[contains(text(),'Ассорти свинины')]").shouldBe(visible);
-            $x("//bdi[contains(text(),'2,900.00')]").shouldBe(visible);
+            porkKebabPage.checkAssortedPork();
         });
     }
 

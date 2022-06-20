@@ -85,14 +85,14 @@ public class MainPage {
 
     public MainPage hoverLambKebabFromSuggestList() {
         dishesOnGrillSuggestList.hover();
-        suggestListLambKebab.should(appear).shouldBe(visible);
+        suggestListLambKebab.should(appear).shouldBe(enabled);
 
         return this;
     }
 
     public MainPage hoverAssortedKebabFromSuggestList() {
         dishesOnGrillSuggestList.hover();
-        suggestListAssortedKebab.should(appear).shouldBe(visible);
+        suggestListAssortedKebab.should(appear).shouldBe(enabled);
 
         return this;
     }
@@ -124,6 +124,17 @@ public class MainPage {
 
     public MainPage clickAssortedKebabFromSuggestList() {
         suggestListAssortedKebab.click();
+
+        return this;
+    }
+    public MainPage clickPorkKebabFromSuggestList() {
+        suggestListPorkKebab.click();
+
+        return this;
+    }
+    public MainPage hoverPorkKebabFromSuggestList() {
+        dishesOnGrillSuggestList.hover();
+        suggestListPorkKebab.should(appear).shouldBe(enabled);
 
         return this;
     }
