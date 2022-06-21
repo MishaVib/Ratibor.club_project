@@ -1,14 +1,19 @@
 package shaslicktests;
-import com.codeborne.selenide.Selenide;
+
 import com.github.javafaker.Faker;
 import io.qameta.allure.*;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import pages.CartPage;
+import pages.DishesOnGrillPage;
 import pages.MainPage;
+import pages.PorkLoinPage;
 
 import java.util.Locale;
-import static com.codeborne.selenide.Selectors.*;
-import static com.codeborne.selenide.Selenide.*;
+
+import static com.codeborne.selenide.Selectors.byText;
+import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$x;
 import static io.qameta.allure.Allure.step;
 
 public class ShashlickSuccessOrder extends TestBase {
@@ -17,6 +22,9 @@ public class ShashlickSuccessOrder extends TestBase {
     String phoneNumber = faker.phoneNumber().phoneNumber();
     String address = faker.address().streetAddress();
     MainPage mainPage = new MainPage();
+    DishesOnGrillPage dishesOnGrillPage = new DishesOnGrillPage();
+    PorkLoinPage porkLoinPage = new PorkLoinPage();
+    CartPage cartPage = new CartPage();
 
 
     @Test
@@ -33,29 +41,29 @@ public class ShashlickSuccessOrder extends TestBase {
             mainPage.openMainPage();
         });
         step("Наличие номера телефона и заголовка", () -> {
-        mainPage.headerAndPhoneCheck();
+            mainPage.headerAndPhoneCheck();
         });
         step("Переход в раздел блюда на мангале", () -> {
-        mainPage.clickDishesOnGrill();
+            mainPage.clickDishesOnGrill();
         });
         step("Переход в товар Свиная корейка и добавляем одну штуку в корзину", () -> {
-        $x("//a[@href='https://shashlik.club/meny/blyuda-na-mangale/svinaya-koreyka/']").click();
-        $("[name=add-to-cart]").click();
+            dishesOnGrillPage.clickPorkLoin();
+            porkLoinPage.clickButtonAddToCart();
         });
         step("Переход в корзину и добавление товара кликом на плюсик", () -> {
-        $x("//a[@href='https://shashlik.club/cart/']").click();
-        $(byText("+")).doubleClick();
+            porkLoinPage.clkickButtonViewCart();
+            cartPage.clickButtonPlus();
         });
         step("Переход в оформление заказа и ввод данных для получения заказа", () -> {
-        $x("//a[@href='https://shashlik.club/checkout/']").click();
-        $("#billing_first_name").setValue(firstName);
-        $("#billing_phone").setValue(phoneNumber);
-        $("#shipping_address_1").setValue(address);
+            $x("//a[@href='https://shashlik.club/checkout/']").click();
+            $("#billing_first_name").setValue(firstName);
+            $("#billing_phone").setValue(phoneNumber);
+            $("#shipping_address_1").setValue(address);
         });
         step("Выбор самовывоза и подтверждение заказа", () -> {
             $(byText("Самовывоз")).click();
             $(byText("Подтвердить заказ")).click();
         });
-        }
     }
+}
 
