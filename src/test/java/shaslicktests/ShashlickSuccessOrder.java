@@ -1,15 +1,9 @@
 package shaslicktests;
 
-import com.github.javafaker.Faker;
 import io.qameta.allure.*;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
-import pages.CartPage;
-import pages.DishesOnGrillPage;
-import pages.MainPage;
-import pages.PorkLoinPage;
-
-import java.util.Locale;
+import pages.*;
 
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
@@ -17,14 +11,11 @@ import static com.codeborne.selenide.Selenide.$x;
 import static io.qameta.allure.Allure.step;
 
 public class ShashlickSuccessOrder extends TestBase {
-    Faker faker = new Faker(new Locale("ru"));
-    String firstName = faker.name().firstName();
-    String phoneNumber = faker.phoneNumber().phoneNumber();
-    String address = faker.address().streetAddress();
     MainPage mainPage = new MainPage();
     DishesOnGrillPage dishesOnGrillPage = new DishesOnGrillPage();
     PorkLoinPage porkLoinPage = new PorkLoinPage();
     CartPage cartPage = new CartPage();
+    ClientFormPage clientFormPage = new ClientFormPage();
 
 
     @Test
@@ -56,9 +47,7 @@ public class ShashlickSuccessOrder extends TestBase {
         });
         step("Переход в оформление заказа и ввод данных для получения заказа", () -> {
             $x("//a[@href='https://shashlik.club/checkout/']").click();
-            $("#billing_first_name").setValue(firstName);
-            $("#billing_phone").setValue(phoneNumber);
-            $("#shipping_address_1").setValue(address);
+            clientFormPage.fillClientForm();
         });
         step("Выбор самовывоза и подтверждение заказа", () -> {
             $(byText("Самовывоз")).click();
