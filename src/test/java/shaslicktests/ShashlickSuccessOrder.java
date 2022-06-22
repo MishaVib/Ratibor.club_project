@@ -5,9 +5,6 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import pages.*;
 
-import static com.codeborne.selenide.Selectors.byText;
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.$x;
 import static io.qameta.allure.Allure.step;
 
 public class ShashlickSuccessOrder extends TestBase {
@@ -46,12 +43,14 @@ public class ShashlickSuccessOrder extends TestBase {
             cartPage.clickButtonPlus();
         });
         step("Переход в оформление заказа и ввод данных для получения заказа", () -> {
-            $x("//a[@href='https://shashlik.club/checkout/']").click();
+            cartPage.clickButtonSetAnOrder();
             clientFormPage.fillClientForm();
         });
         step("Выбор самовывоза и подтверждение заказа", () -> {
-            $(byText("Самовывоз")).click();
-            $(byText("Подтвердить заказ")).click();
+            cartPage
+                    .clickRadioButton()
+                    .clickConfirmButton();
+
         });
     }
 }
