@@ -29,9 +29,6 @@ public class MainPage {
             header = $("#primary");
 
 
-
-
-
     public MainPage openMainPage() {
         open("https://shashlik.club");
 
@@ -132,23 +129,27 @@ public class MainPage {
 
         return this;
     }
+
     public MainPage clickPorkKebabFromSuggestList() {
         suggestListPorkKebab.click();
 
         return this;
     }
+
     public MainPage hoverPorkKebabFromSuggestList() {
         dishesOnGrillSuggestList.hover();
         suggestListPorkKebab.should(appear).shouldBe(enabled);
 
         return this;
     }
+
     public MainPage headerAndPhoneCheck() {
         header.shouldHave(text("Шашлык от кафе Ратибор"));
         telephone.shouldHave(text("+7 (930) 222 00 32"));
 
         return this;
     }
+
     public MainPage clickDishesOnGrill() {
         dishesOnGrillSuggestList.click();
 

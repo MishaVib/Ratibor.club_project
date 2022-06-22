@@ -9,9 +9,9 @@ import static com.codeborne.selenide.Selenide.$;
 
 public class ClientFormPage {
     Faker faker = new Faker(new Locale("ru"));
-    private String firstName = faker.name().firstName();
-    private String phoneNumber = faker.phoneNumber().phoneNumber();
-    private String address = faker.address().streetAddress();
+    private final String firstName = faker.name().firstName();
+    private final String phoneNumber = faker.phoneNumber().phoneNumber();
+    private final String address = faker.address().streetAddress();
 
     SelenideElement
             inputFirstName = $("#billing_first_name"),

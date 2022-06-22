@@ -11,7 +11,6 @@ import pages.MainPage;
 import static com.codeborne.selenide.Condition.empty;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.open;
 import static io.qameta.allure.Allure.step;
 
 
@@ -25,26 +24,25 @@ public class ShashlickSearchResults extends TestBase {
             "Проверка результатов поисковой выдачи при валидных значениях"
     )
     @Feature("Поисковая строка")
+    @ParameterizedTest(name = "Результаты выдачи при валидных данных")
+    @Tag("regress")
+    @Tag("search")
     @CsvSource({
             "баранина, Мякоть баранины",
             "свиная, Свиная шея",
     })
-    @ParameterizedTest(name = "Результаты выдачи при валидных данных")
-    @Tag("regress")
-    @Tag("search")
-
-void searchResults(String testData, String expectedText) {
+    void searchResults(String testData, String expectedText) {
         step("Открываем главную страницу", () -> {
 
-        open("https://shashlik.club/");
+            mainPage.openMainPage();
         });
         step("Вбиваем в строку поиска установленные значения", () -> {
 
-        $("#woocommerce-product-search-field-0").shouldBe(empty).setValue(testData).pressEnter();
+            $("#woocommerce-product-search-field-0").shouldBe(empty).setValue(testData).pressEnter();
         });
         step("Проверяем, что в результатах поиска есть установленное значение", () -> {
 
-        $(".content-area").shouldHave(text(expectedText));
+            $(".content-area").shouldHave(text(expectedText));
         });
     }
 
@@ -58,7 +56,6 @@ void searchResults(String testData, String expectedText) {
     )
     @Feature("Поисковая строка")
     @DisplayName("Результат поисковой выдачи без введенных данных")
-
     void emptyValueInput() {
         mainPage
                 .openMainPage()
