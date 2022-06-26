@@ -1,5 +1,6 @@
 package shaslicktests;
 
+import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.*;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
@@ -17,6 +18,12 @@ import static io.qameta.allure.Allure.step;
 public class ShashlickSearchResults extends TestBase {
 
     MainPage mainPage = new MainPage();
+
+    SelenideElement
+    inputSearch = $("#woocommerce-product-search-field-0"),
+    searchResults = $(".content-area");
+
+
 
     @Owner("Никита Шутков")
     @Severity(SeverityLevel.CRITICAL)
@@ -38,11 +45,11 @@ public class ShashlickSearchResults extends TestBase {
         });
         step("Вбиваем в строку поиска установленные значения", () -> {
 
-            $("#woocommerce-product-search-field-0").shouldBe(empty).setValue(testData).pressEnter();
+            inputSearch.shouldBe(empty).setValue(testData).pressEnter();
         });
         step("Проверяем, что в результатах поиска есть установленное значение", () -> {
 
-            $(".content-area").shouldHave(text(expectedText));
+            searchResults.shouldHave(text(expectedText));
         });
     }
 
