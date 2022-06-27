@@ -1,10 +1,8 @@
-package shaslicktests;
+package club.shashlick.parametrized_tests;
 
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.*;
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import pages.MainPage;
@@ -15,14 +13,13 @@ import static com.codeborne.selenide.Selenide.$;
 import static io.qameta.allure.Allure.step;
 
 
-public class ShashlickSearchResults extends TestBase {
+public class ParametrizedTests extends TestBase {
 
     MainPage mainPage = new MainPage();
 
     SelenideElement
-    inputSearch = $("#woocommerce-product-search-field-0"),
-    searchResults = $(".content-area");
-
+            inputSearch = $("#woocommerce-product-search-field-0"),
+            searchResults = $(".content-area");
 
 
     @Owner("Никита Шутков")
@@ -53,20 +50,4 @@ public class ShashlickSearchResults extends TestBase {
         });
     }
 
-    @Test
-    @Tag("acceptance")
-    @Tag("search")
-    @Owner("Никита Шутков")
-    @Severity(SeverityLevel.CRITICAL)
-    @Description(
-            "Результат поисковой выдачи без ввода данных"
-    )
-    @Feature("Поисковая строка")
-    @DisplayName("Результат поисковой выдачи без введенных данных")
-    void emptyValueInput() {
-        mainPage
-                .openMainPage()
-                .setNullValueInSearchInput();
-
-    }
 }
