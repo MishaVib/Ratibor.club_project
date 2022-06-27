@@ -1,5 +1,4 @@
-package shaslicktests;
-
+package club.shashlick.ui_tests;
 
 import io.qameta.allure.*;
 import org.junit.jupiter.api.DisplayName;
@@ -10,13 +9,18 @@ import pages.*;
 import static io.qameta.allure.Allure.step;
 
 
-public class AvailabilityOfItems extends TestBase {
+public class UiTests extends TestBase {
     MainPage mainPage = new MainPage();
     SoupsPage soupsPage = new SoupsPage();
     BakeryPage bakeryPage = new BakeryPage();
     AssortedKebabPage assortedKebabPage = new AssortedKebabPage();
     LambKebabPage lambKebabPage = new LambKebabPage();
     PorkKebabPage porkKebabPage = new PorkKebabPage();
+    BookingPage bookingPage = new BookingPage();
+    DishesOnGrillPage dishesOnGrillPage = new DishesOnGrillPage();
+    PorkLoinPage porkLoinPage = new PorkLoinPage();
+    CartPage cartPage = new CartPage();
+    ClientFormPage clientFormPage = new ClientFormPage();
 
     @Owner("Никита Шутков")
     @Severity(SeverityLevel.NORMAL)
@@ -263,6 +267,108 @@ public class AvailabilityOfItems extends TestBase {
         step("Проверяем наличие категории Наш Партнер ЦС Феникс", () -> {
             mainPage.ourPartnerCheck();
         });
+    }
+
+    @Test
+    @Tag("acceptance")
+    @Tag("order")
+    @Owner("Никита Шутков")
+    @Severity(SeverityLevel.BLOCKER)
+    @Description(
+            "Проверка успешного создания заказа шашлыка"
+    )
+    @Feature("Оформление заказа")
+    void successOrder() {
+        step("Открываем главную страницу", () -> {
+            mainPage.openMainPage();
+        });
+        step("Наличие номера телефона и заголовка", () -> {
+            mainPage.headerAndPhoneCheck();
+        });
+        step("Переход в раздел блюда на мангале", () -> {
+            mainPage.clickDishesOnGrill();
+        });
+        step("Переход в товар Свиная корейка и добавляем одну штуку в корзину", () -> {
+            dishesOnGrillPage.clickPorkLoin();
+            porkLoinPage.clickButtonAddToCart();
+        });
+        step("Переход в корзину и добавление товара кликом на плюсик", () -> {
+            porkLoinPage.clkickButtonViewCart();
+            cartPage.clickButtonPlus();
+        });
+        step("Переход в оформление заказа и ввод данных для получения заказа", () -> {
+            cartPage.clickButtonSetAnOrder();
+            clientFormPage.fillClientForm();
+        });
+        step("Выбор самовывоза и подтверждение заказа", () -> {
+            cartPage
+                    .clickRadioButton()
+                    .clickConfirmButton();
+
+        });
+    }
+
+    @Test
+    @Tag("acceptance")
+    @Tag("booking")
+    @Owner("Никита Шутков")
+    @Severity(SeverityLevel.NORMAL)
+    @DisplayName("Элементы страницы Забронировать стол")
+    @Description(
+            "Страница бронирования столика"
+    )
+    @Feature("Бронь")
+    void bookingTable() {
+        step("Открываем главную страницу", () -> {
+            bookingPage.openMainPage();
+        });
+        step("Клик на кнопку Забронировать стол", () -> {
+            bookingPage.buttonClick();
+        });
+        step("Проверка элементов в разделе бронирования стола", () -> {
+            bookingPage
+                    .bookingHeaderCheck()
+                    .textAboutBookingCheck().phoneNumberCheck()
+                    .siteInfo().linkInSiteInfoCheck();
+        });
+    }
+
+    @Test
+    @Owner("Никита Шутков")
+    @Severity(SeverityLevel.MINOR)
+    @DisplayName("Переход по ссылке")
+    @Description(
+            "Переход по ссылке на сайт Оригинальные Швейцарские часы"
+    )
+    @Feature("Ссылка")
+    void deeplink() {
+        step("Открыть страницу Забронировать стол", () -> {
+            bookingPage.openBookingPage();
+
+        });
+        step("Клик по ссылке", () -> {
+            bookingPage.clickBySwissClock();
+        });
+        step("Проверка, что открылся сайт", () -> {
+            bookingPage.swissHeaderCheck();
+        });
+    }
+
+    @Test
+    @Tag("acceptance")
+    @Tag("search")
+    @Owner("Никита Шутков")
+    @Severity(SeverityLevel.CRITICAL)
+    @Description(
+            "Результат поисковой выдачи без ввода данных"
+    )
+    @Feature("Поисковая строка")
+    @DisplayName("Результат поисковой выдачи без введенных данных")
+    void emptyValueInput() {
+        mainPage
+                .openMainPage()
+                .setNullValueInSearchInput();
+
     }
 }
 

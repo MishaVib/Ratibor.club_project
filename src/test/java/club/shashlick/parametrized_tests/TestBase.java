@@ -1,4 +1,4 @@
-package shaslicktests;
+package club.shashlick.parametrized_tests;
 
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
@@ -8,7 +8,6 @@ import helpers.DriverSettings;
 import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
-
 
 import static com.codeborne.selenide.Selenide.closeWebDriver;
 
