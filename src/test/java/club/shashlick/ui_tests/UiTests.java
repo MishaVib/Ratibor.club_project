@@ -320,7 +320,7 @@ public class UiTests extends TestBase {
     @Feature("Бронь")
     void bookingTable() {
         step("Открываем главную страницу", () -> {
-            bookingPage.openMainPage();
+            mainPage.openMainPage();
         });
         step("Клик на кнопку Забронировать стол", () -> {
             bookingPage.buttonClick();
