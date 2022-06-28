@@ -1,36 +1,52 @@
 package helpers;
 
 import com.codeborne.selenide.Configuration;
-import config.ProjectConfig;
-import org.aeonbits.owner.ConfigFactory;
+import config.Project;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
 
 public class DriverSettings {
-    static ProjectConfig ProjectConfig = ConfigFactory.create(ProjectConfig.class);
 
     public static void configure() {
-        String remoteUrl = System.getProperty("remoteUrl", ProjectConfig.remoteUrl());
-        String login = System.getProperty("login", ProjectConfig.login());
-        String password = System.getProperty("pass", ProjectConfig.password());
-        String browser = System.getProperty("browser", ProjectConfig.browser());
-        String version = System.getProperty("browserVersion", ProjectConfig.browserVersion());
-        String size = System.getProperty("browserSize", ProjectConfig.browserSize());
+        Configuration.browser = Project.config.browser();
+        Configuration.browserVersion = Project.config.browserVersion();
+        Configuration.browserSize = Project.config.browserSize();
+        Configuration.timeout = Project.config.timeout();
+        Configuration.baseUrl = System.getProperty("urlWebSite");
 
-        String url = "https://" + login + ":" + password + "@" + remoteUrl;
-        Configuration.remote = url;
-        Configuration.browser = browser;
-        Configuration.browserVersion = version;
-        Configuration.browserSize = size;
 
         DesiredCapabilities capabilities = new DesiredCapabilities();
-        capabilities.setCapability("enableVNC", true);
-        capabilities.setCapability("enableVideo", true);
+        ChromeOptions chromeOptions = new ChromeOptions();
+        FirefoxOptions firefoxOptions = new FirefoxOptions();
+
+        switch (Configuration.browser) {
+            case "chrome":
+                chromeOptions.addArguments("--no-sandbox");
+                chromeOptions.addArguments("--disable-infobars");
+                chromeOptions.addArguments("--disable-popup-blocking");
+                chromeOptions.addArguments("--disable-notifications");
+                chromeOptions.addArguments("--lang=en-en");
+                capabilities.setCapability(ChromeOptions.CAPABILITY, chromeOptions);
+                break;
+            case "firefox":
+                firefoxOptions.addArguments("--fast-start");
+                firefoxOptions.addArguments("--enable-logging");
+                firefoxOptions.addArguments("--ignore-certificate-errors");
+                firefoxOptions.addArguments("--disable-gpu");
+                capabilities.setCapability(FirefoxOptions.FIREFOX_OPTIONS, firefoxOptions);
+                break;
+        }
+
+        if (Project.isRemoteWebDriver()) {
+            capabilities.setCapability("enableVNC", true);
+            capabilities.setCapability("enableVideo", true);
+            Configuration.remote = Project.config.remoteDriverUrl();
+        }
+
         Configuration.browserCapabilities = capabilities;
 
-        AllureAttachments.attachAsText("Browser: ", browser);
-        AllureAttachments.attachAsText("Version: ", version);
-        AllureAttachments.attachAsText("Remote Url: ", remoteUrl);
     }
 
 }
