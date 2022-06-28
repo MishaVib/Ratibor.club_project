@@ -4,9 +4,10 @@ import org.aeonbits.owner.Config;
 
 @Config.LoadPolicy(Config.LoadType.MERGE)
 @Config.Sources({
-        "classpath:config/credentials.properties",
-        "classpath:config/local.properties",
-        "classpath:config/remote.properties"
+        "classpath:config/${configure}.properties"
+        //"classpath:config/credentials.properties",
+       //"classpath:config/local.properties",
+       // "classpath:config/remote.properties"
 })
 
 public interface ProjectConfig extends Config {
@@ -19,12 +20,12 @@ public interface ProjectConfig extends Config {
         @DefaultValue("1920x1080")
         String browserSize();
 
-        String remoteUrl();
+        String remoteDriverUrl();
 
-        String videoAttachUrl();
+        String videoStorage();
 
-        String login();
+        int timeoutVideoAttach();
 
-        String password();
+        int  timeout();
 }
 
