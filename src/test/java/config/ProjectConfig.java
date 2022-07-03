@@ -4,28 +4,28 @@ import org.aeonbits.owner.Config;
 
 @Config.LoadPolicy(Config.LoadType.MERGE)
 @Config.Sources({
-        "classpath:config/${configure}.properties"
-        //"classpath:config/credentials.properties",
-       //"classpath:config/local.properties",
-       // "classpath:config/remote.properties"
+        "system:properties",
+        "classpath:config/${client}.properties",
 })
-
 public interface ProjectConfig extends Config {
-        @DefaultValue("chrome")
-        String browser();
 
-        @DefaultValue("100.0")
-        String browserVersion();
+    String client();
+    String type();
 
-        @DefaultValue("1920x1080")
-        String browserSize();
+    @DefaultValue("https://shashlik.club")
+    String baseUrl();
 
-        String remoteDriverUrl();
+    @DefaultValue("chrome")
+    String browser();
 
-        String videoStorage();
+    @DefaultValue("101.0")
+    String browserVersion();
 
-        int timeoutVideoAttach();
+    @DefaultValue("1920x1080")
+    String browserSize();
 
-        int  timeout();
+
+    String remoteDriverUrl();
+
+    String videoStorage();
 }
-

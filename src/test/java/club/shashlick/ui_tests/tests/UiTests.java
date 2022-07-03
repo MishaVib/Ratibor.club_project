@@ -1,5 +1,7 @@
-package club.shashlick.ui_tests;
+package club.shashlick.ui_tests.tests;
 
+import helpers.DriverUtils;
+import helpers.Layer;
 import io.qameta.allure.*;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
@@ -7,9 +9,10 @@ import org.junit.jupiter.api.Test;
 import pages.*;
 
 import static io.qameta.allure.Allure.step;
+import static org.assertj.core.api.Assertions.assertThat;
 
-
-public class UiTests extends TestBase {
+@Layer("web")
+public class UiTests extends TestBaseWeb {
     MainPage mainPage = new MainPage();
     SoupsPage soupsPage = new SoupsPage();
     BakeryPage bakeryPage = new BakeryPage();
@@ -365,10 +368,32 @@ public class UiTests extends TestBase {
     @Feature("Поисковая строка")
     @DisplayName("Результат поисковой выдачи без введенных данных")
     void emptyValueInput() {
-        mainPage
-                .openMainPage()
-                .setNullValueInSearchInput();
-
+        step("Открыть главную страницу", () -> {
+            mainPage.openMainPage();
+        });
+        step("Не вводить значение и нажать Enter", () -> {
+            mainPage.setNullValueInSearchInput();
+        });
     }
+
+    @Test
+    @Tag("acceptance")
+    @Tag("regress")
+    @Owner("Никита Шутков")
+    @Description("Проверка на отсутствие ошибок в консоли сайта")
+    @DisplayName("Отсутствие критических ошибок на главной странице")
+    void consoleShouldNotHaveErrorsTest() {
+        step("Открыть главную страницу", () -> {
+            mainPage.openMainPage();
+        });
+        step("в логах нет ошибок категрии 'SEVERE'", () -> {
+            String consoleLogs = DriverUtils.getConsoleLogs();
+            String errorText = "SEVERE";
+
+            assertThat(consoleLogs).doesNotContain(errorText);
+        });
+    }
+
 }
+
 

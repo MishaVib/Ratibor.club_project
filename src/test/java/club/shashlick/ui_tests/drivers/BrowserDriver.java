@@ -1,4 +1,4 @@
-package helpers;
+package club.shashlick.ui_tests.drivers;
 
 import com.codeborne.selenide.Configuration;
 import config.Project;
@@ -7,15 +7,13 @@ import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
 
-public class DriverSettings {
+public class BrowserDriver {
 
     public static void configure() {
         Configuration.browser = Project.config.browser();
         Configuration.browserVersion = Project.config.browserVersion();
         Configuration.browserSize = Project.config.browserSize();
-        Configuration.timeout = Project.config.timeout();
-        Configuration.baseUrl = System.getProperty("urlWebSite");
-
+        Configuration.baseUrl = Project.config.baseUrl();
 
         DesiredCapabilities capabilities = new DesiredCapabilities();
         ChromeOptions chromeOptions = new ChromeOptions();
@@ -46,7 +44,5 @@ public class DriverSettings {
         }
 
         Configuration.browserCapabilities = capabilities;
-
     }
-
 }

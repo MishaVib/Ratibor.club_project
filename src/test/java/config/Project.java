@@ -6,10 +6,11 @@ public class Project {
     public static ProjectConfig config = ConfigFactory.create(ProjectConfig.class, System.getProperties());
 
     public static boolean isRemoteWebDriver() {
-        return !config.remoteDriverUrl().equals("");
+        return config.client().equals("remoteBrowser");
     }
 
     public static boolean isVideoOn() {
-        return !config.videoStorage().equals("");
+        return config.videoStorage() != null;
     }
+
 }

@@ -1,4 +1,4 @@
-package club.shashlick.parametrized_tests;
+package club.shashlick.ui_tests.tests;
 
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.*;
@@ -13,7 +13,7 @@ import static com.codeborne.selenide.Selenide.$;
 import static io.qameta.allure.Allure.step;
 
 
-public class ParametrizedTests extends TestBase {
+public class ParametrizedTests extends TestBaseWeb {
 
     MainPage mainPage = new MainPage();
 
