@@ -30,7 +30,7 @@ public class MainPage {
 
 
     public MainPage openMainPage() {
-        open("/");
+        open("https://shashlik.club/");
 
         return this;
     }

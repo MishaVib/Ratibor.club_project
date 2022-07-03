@@ -1,5 +1,5 @@
 package helpers;
-import config.Project;
+
 import io.qameta.allure.Allure;
 import io.qameta.allure.Attachment;
 import org.slf4j.Logger;
@@ -11,9 +11,9 @@ import java.io.InputStream;
 import java.net.URL;
 
 import static com.codeborne.selenide.Selenide.sleep;
+
 public class AllureAttachments {
     public static final Logger LOGGER = LoggerFactory.getLogger(AllureAttachments.class);
-    public static int timeoutVideoAttach = Project.config.timeoutVideoAttach();
 
     @Attachment(value = "{attachName}", type = "text/plain")
     private static String addMessage(String attachName, String text) {
@@ -34,24 +34,26 @@ public class AllureAttachments {
         return DriverUtils.getPageSourceAsBytes();
     }
 
-    public static void addVideo(String sessionId) {
+    public static void addVideoBrowser(String sessionId) {
         URL videoUrl = DriverUtils.getVideoUrl(sessionId);
         if (videoUrl != null) {
             InputStream videoInputStream = null;
-            sleep(timeoutVideoAttach);
+            sleep(1000);
 
             for (int i = 0; i < 20; i++) {
                 try {
                     videoInputStream = videoUrl.openStream();
                     break;
                 } catch (FileNotFoundException e) {
-                    sleep(timeoutVideoAttach);
+                    sleep(1000);
                 } catch (IOException e) {
                     LOGGER.warn("[ALLURE VIDEO ATTACHMENT ERROR] Cant attach allure video, {}", videoUrl);
                     e.printStackTrace();
                 }
             }
-            Allure.addAttachment("Video", "video/mp4", videoInputStream, "mp4");
+            if (videoInputStream != null) {
+                Allure.addAttachment("Video", "video/mp4", videoInputStream, "mp4");
+            }
         }
     }
 
