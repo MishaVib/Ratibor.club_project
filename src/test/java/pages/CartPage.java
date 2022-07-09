@@ -1,5 +1,6 @@
 package pages;
 
+import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 
 import static com.codeborne.selenide.Selectors.byText;
@@ -34,7 +35,6 @@ public class CartPage {
 
     public CartPage clickConfirmButton() {
         confirmButton.click();
-        sleep(3000);
 
         return this;
     }

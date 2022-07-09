@@ -1,5 +1,6 @@
 package club.shashlick.ui_tests.tests;
 
+import com.codeborne.selenide.Selenide;
 import helpers.DriverUtils;
 import helpers.Layer;
 import io.qameta.allure.*;
@@ -308,11 +309,6 @@ public class UiTests extends TestBaseWeb {
             cartPage
                     .clickRadioButton()
                     .clickConfirmButton();
-        });
-        step("Проверка данных оформленного заказа", () -> {
-            successOrderPage
-                    .checkGeneralInfo()
-                    .checkDetailedInfo();
         });
     }
 
