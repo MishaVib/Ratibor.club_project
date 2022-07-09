@@ -8,7 +8,8 @@ import static com.codeborne.selenide.Selenide.$x;
 
 public class CartPage {
 
-    SelenideElement
+    // элементы для добавления товара в корзину
+    private SelenideElement
             buttonPlus = $(byText("+")),
             buttonSetAnOrder = $x("//a[@href='https://shashlik.club/checkout/']"),
             radioButton = $(byText("Самовывоз")),

@@ -10,9 +10,12 @@ import static com.codeborne.selenide.Selenide.$$x;
 import static com.codeborne.selenide.Selenide.$x;
 
 public class BakeryPage {
-    ElementsCollection
+    // наличие всех кнопок добавить в корзнину на странице
+    private ElementsCollection
             buttonAddToCart = $$x("//a[@class='button product_type_simple add_to_cart_button ajax_add_to_cart']");
-    SelenideElement
+
+    // наименование и стоимость товара
+    private SelenideElement
             hachapuri = $x("//h2[contains(text(),'Хачапури по Аджарски')]"),
             priceHachapuri = $x("//bdi[contains(text(),'350.00')]"),
             hachapuriWithTwoEggs = $x("//h2[contains(text(),'Хачапури по Аджарски с двумя яйцами')]"),

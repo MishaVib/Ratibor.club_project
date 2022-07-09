@@ -7,16 +7,23 @@ import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
 public class MainPage {
-    SelenideElement
 
+    // связано с поиском
+    private SelenideElement
             input = $(".search-field"),
-            searchNullResult = $("h1"),
+            searchNullResult = $("h1");
+
+    // для перехода и категории товаров не в табе
+    private SelenideElement
             linkToSoupPage = $(byText("Супы")),
             linkToBakeryPage = $(byText("Выпечка")),
             dishesOnGrill = $x("//a[normalize-space()='Блюда на Мангале']"),
             salads = $x("//a[normalize-space()='Салаты и Закуски']"),
             bakery = $x("//a[normalize-space()='Выпечка']"),
-            ourPartner = $x("//a[normalize-space()='Наш Партнер ЦС Феникс']"),
+            ourPartner = $x("//a[normalize-space()='Наш Партнер ЦС Феникс']");
+
+    // саджесты
+    private SelenideElement
             suggestListLambKebab = $x("//a[@href='https://shashlik.club/category/blyuda-na-mangale/shashlyk-iz-baraniny/']"),
             dishesOnGrillSuggestList = $x("//a[@href='https://shashlik.club/category/blyuda-na-mangale/']"),
             suggestListAssortedKebab = $x("//a[@href='https://shashlik.club/category/blyuda-na-mangale/assorti-shashlyka/']"),
@@ -24,7 +31,10 @@ public class MainPage {
             suggestListBeefKebab = $x("//a[@href='https://shashlik.club/category/blyuda-na-mangale/shashlyk-iz-telyatiny/']"),
             suggestListChickenKebab = $x("//a[@href='https://shashlik.club/category/blyuda-na-mangale/shashlyk-iz-kuritsy/']"),
             suggestListFishKebab = $x("//a[@href='https://shashlik.club/category/blyuda-na-mangale/shashlyk-iz-ryby/']"),
-            suggestListSideDishes = $x("//a[@href='https://shashlik.club/category/garniry/']"),
+            suggestListSideDishes = $x("//a[@href='https://shashlik.club/category/garniry/']");
+
+
+    private SelenideElement
             telephone = $(".tphone"),
             header = $("#primary");
 

@@ -1,19 +1,21 @@
 package pages;
 
-import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 
 import static com.codeborne.selenide.CollectionCondition.size;
-import static com.codeborne.selenide.Condition.*;
+import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$$x;
 import static com.codeborne.selenide.Selenide.$x;
 
 public class LambKebabPage {
-    ElementsCollection
+
+    //наличие кнопок добавить в корзину на странице
+    private ElementsCollection
             buttonsAddToCart = $$x("//a[@class='button product_type_simple add_to_cart_button ajax_add_to_cart']");
 
-    SelenideElement
+    // наименование и цена товара
+    private SelenideElement
             itemLambFlesh = $x("//h2[contains(text(),'Мякоть баранины')]"),
             priceLambFlesh = $x("//bdi[contains(text(),'730.00')]"),
             itemRackOfLamb = $x("//h2[contains(text(),'Каре ягненка')]"),
@@ -36,18 +38,21 @@ public class LambKebabPage {
 
         return this;
     }
+
     public LambKebabPage checkItemLambFlesh() {
         itemLambFlesh.shouldBe(visible);
         priceLambFlesh.shouldBe(visible);
 
         return this;
     }
+
     public LambKebabPage checkItemRackOfLamb() {
         itemRackOfLamb.shouldBe(visible);
         priceRackOfLamb.shouldBe(visible);
 
         return this;
     }
+
     public LambKebabPage checkItemLambLoin() {
         lambLoin.shouldBe(visible);
         priceLambLoin.shouldBe(visible);
@@ -55,42 +60,41 @@ public class LambKebabPage {
         return this;
 
     }
+
     public LambKebabPage checkItemLambSaddleKebab() {
         lambSaddleKebab.shouldBe(visible);
         priceLambSaddleKebab.shouldBe(visible);
 
         return this;
     }
+
     public LambKebabPage checkItemLambRibs() {
         lambRibs.shouldBe(visible);
         priceLambRibs.shouldBe(visible);
 
         return this;
     }
+
     public LambKebabPage checkItemLambLiver() {
         lambLiver.shouldBe(visible);
         priceLambLiver.shouldBe(visible);
 
         return this;
     }
+
     public LambKebabPage checkLulyaFromLamb() {
         lulyaFromLamb.shouldBe(visible);
         priceLulyaFromLamb.shouldBe(visible);
 
         return this;
     }
+
     public LambKebabPage checkAssortedKebab() {
         assortedLamb.shouldBe(visible);
         priceAssortedLamb.shouldBe(visible);
 
         return this;
     }
-
-
-
-
-
-
 
 
 }

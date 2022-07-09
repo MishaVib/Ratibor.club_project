@@ -9,7 +9,9 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
 public class BookingPage {
-    SelenideElement
+
+    // общие элементы страницы
+    private SelenideElement
 
             bookingTable = $(byText("Забронировать стол")),
             bookingHeader = $("h1"),

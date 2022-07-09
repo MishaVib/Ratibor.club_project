@@ -6,7 +6,7 @@ import static com.codeborne.selenide.Selenide.$x;
 
 public class DishesOnGrillPage {
 
-    SelenideElement
+    private SelenideElement
             itemPorkLoin = $x("//a[@href='https://shashlik.club/meny/blyuda-na-mangale/svinaya-koreyka/']");
 
 
