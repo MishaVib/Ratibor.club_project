@@ -1,6 +1,5 @@
 package club.shashlick.ui_tests.tests;
 
-import com.codeborne.selenide.Selenide;
 import helpers.DriverUtils;
 import helpers.Layer;
 import io.qameta.allure.*;
@@ -25,7 +24,6 @@ public class UiTests extends TestBaseWeb {
     PorkLoinPage porkLoinPage = new PorkLoinPage();
     CartPage cartPage = new CartPage();
     ClientFormPage clientFormPage = new ClientFormPage();
-    SuccessOrderPage successOrderPage = new SuccessOrderPage();
 
     @Owner("Никита Шутков")
     @Severity(SeverityLevel.NORMAL)
