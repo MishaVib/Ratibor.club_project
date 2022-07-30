@@ -7,3 +7,5 @@
 /replay_pid16108.log
 /build/
 /.idea/
+/.gradle/
+/out/
