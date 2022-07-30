@@ -14,13 +14,18 @@ public class MainPage {
             searchNullResult = $("h1");
 
     // для перехода и категории товаров не в табе
+    // и пикчи
     private SelenideElement
             linkToSoupPage = $(byText("Супы")),
             linkToBakeryPage = $(byText("Выпечка")),
             dishesOnGrill = $x("//a[normalize-space()='Блюда на Мангале']"),
+            dishesOnGrillImage = $x("//img[@class='wp-image-180 lazyloaded']"),
             salads = $x("//a[normalize-space()='Салаты и Закуски']"),
+            saladsImage = $x("//img[@class='wp-image-13248 lazyloaded']"),
             bakery = $x("//a[normalize-space()='Выпечка']"),
-            ourPartner = $x("//a[normalize-space()='Наш Партнер ЦС Феникс']");
+            bakeryImage = $(" img.wp-image-14463.alignright.lazyloaded"),
+            ourPartner = $x("//a[normalize-space()='Наш Партнер ЦС Феникс']"),
+            ourPartnerImage = $x("//img[@class='wp-image-14050 alignright lazyloaded']");
 
     // саджесты
     private SelenideElement
@@ -36,7 +41,9 @@ public class MainPage {
 
     private SelenideElement
             telephone = $(".tphone"),
-            header = $("#primary");
+            header = $("#primary"),
+            makeAnOrder = $(byText("Оформление заказа")),
+            cart = $("i");
 
 
     public MainPage openMainPage() {
@@ -66,24 +73,28 @@ public class MainPage {
 
     public MainPage dishesOnGrillCheck() {
         dishesOnGrill.shouldBe(enabled);
+        dishesOnGrillImage.shouldBe(image);
 
         return this;
     }
 
     public MainPage saladsCheck() {
         salads.shouldBe(enabled);
+        saladsImage.shouldBe(image);
 
         return this;
     }
 
     public MainPage bakeryCheck() {
         bakery.shouldBe(enabled);
+        bakeryImage.shouldBe(image);
 
         return this;
     }
 
     public MainPage ourPartnerCheck() {
         ourPartner.shouldBe(enabled);
+        ourPartnerImage.shouldBe(image);
 
         return this;
     }
@@ -162,6 +173,18 @@ public class MainPage {
 
     public MainPage clickDishesOnGrill() {
         dishesOnGrillSuggestList.click();
+
+        return this;
+    }
+
+    public MainPage clickMakeAnOrder() {
+        makeAnOrder.click();
+
+        return this;
+    }
+
+    public MainPage clickCart() {
+        cart.shouldHave(cssClass("wpmenucart-icon-shopping-cart-0")).click();
 
         return this;
     }

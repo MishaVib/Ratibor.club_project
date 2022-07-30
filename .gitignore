@@ -1,0 +1,9 @@
+# Default ignored files
+/shelf/
+/workspace.xml
+/hs_err_pid2064.log
+/hs_err_pid16108.log
+/replay_pid2064.log
+/replay_pid16108.log
+/build/
+/.idea/

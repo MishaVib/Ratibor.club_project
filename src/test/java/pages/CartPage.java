@@ -1,5 +1,6 @@
 package pages;
 
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 
 import static com.codeborne.selenide.Selectors.byText;
@@ -13,6 +14,12 @@ public class CartPage {
             buttonSetAnOrder = $x("//a[@href='https://shashlik.club/checkout/']"),
             radioButton = $(byText("Самовывоз")),
             confirmButton = $(byText("Подтвердить заказ"));
+
+    private SelenideElement
+            emptyCart = $("div.woocommerce p"),
+            returnToShop = $(byText("Вернуться в магазин"));
+
+    private final String urlMenu = "https://shashlik.club/meny/";
 
     public CartPage clickButtonPlus() {
         buttonPlus.doubleClick();
@@ -34,6 +41,16 @@ public class CartPage {
 
     public CartPage clickConfirmButton() {
         confirmButton.click();
+        sleep(3000);
+
+        return this;
+    }
+
+    public CartPage checkCartEmprty() {
+        emptyCart.shouldHave(Condition.text("Ваша корзина пока пуста.")).shouldBe(Condition.visible);
+        returnToShop
+                .shouldHave(Condition.attribute("href", urlMenu))
+                .shouldBe(Condition.enabled);
 
         return this;
     }

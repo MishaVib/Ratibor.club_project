@@ -1,5 +1,6 @@
 package club.shashlick.ui_tests.tests;
 
+import com.github.javafaker.Faker;
 import helpers.DriverUtils;
 import helpers.Layer;
 import io.qameta.allure.*;
@@ -7,6 +8,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import pages.*;
+
+import java.util.Locale;
 
 import static io.qameta.allure.Allure.step;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -24,6 +27,14 @@ public class UiTests extends TestBaseWeb {
     PorkLoinPage porkLoinPage = new PorkLoinPage();
     CartPage cartPage = new CartPage();
     ClientFormPage clientFormPage = new ClientFormPage();
+    MenuPage menuPage = new MenuPage();
+
+// для генерации рандомных данных о клиенте
+
+    Faker faker = new Faker(new Locale("ru"));
+    String firstName = faker.name().firstName();
+    String phoneNumber = faker.phoneNumber().phoneNumber();
+    String address = faker.address().streetAddress();
 
     @Owner("Никита Шутков")
     @Severity(SeverityLevel.NORMAL)
@@ -301,7 +312,7 @@ public class UiTests extends TestBaseWeb {
         });
         step("Переход в оформление заказа и ввод данных для получения заказа", () -> {
             cartPage.clickButtonSetAnOrder();
-            clientFormPage.fillClientForm();
+            clientFormPage.fillClientForm(firstName, phoneNumber, address);
         });
         step("Выбор самовывоза и подтверждение заказа", () -> {
             cartPage
@@ -336,6 +347,7 @@ public class UiTests extends TestBaseWeb {
     }
 
     @Test
+    @Tag("regress")
     @Owner("Никита Шутков")
     @Severity(SeverityLevel.MINOR)
     @DisplayName("Переход по ссылке")
@@ -352,7 +364,7 @@ public class UiTests extends TestBaseWeb {
             bookingPage.clickBySwissClock();
         });
         step("Проверка, что открылся сайт", () -> {
-            bookingPage.swissHeaderCheck();
+            bookingPage.swissClockCheck();
         });
     }
 
@@ -381,6 +393,7 @@ public class UiTests extends TestBaseWeb {
     @Owner("Никита Шутков")
     @Description("Проверка на отсутствие ошибок в консоли сайта")
     @DisplayName("Отсутствие критических ошибок на главной странице")
+    @Severity(SeverityLevel.CRITICAL)
     void consoleShouldNotHaveErrorsTest() {
         step("Открыть главную страницу", () -> {
             mainPage.openMainPage();
@@ -393,6 +406,43 @@ public class UiTests extends TestBaseWeb {
         });
     }
 
+    @Test
+    @Tag("acceptance")
+    @Tag("regress")
+    @Tag("order")
+    @Owner("Никита Шутков")
+    @Description("Корзина пуста пока пользователь не добавил товары")
+    @DisplayName("Корзина пуста")
+    @Severity(SeverityLevel.CRITICAL)
+    void emptyCart() {
+        step("Открыть главную страницу", () -> {
+            mainPage.openMainPage();
+        });
+        step("Переход в раздел оформления заказа", () -> {
+            mainPage.clickMakeAnOrder();
+        });
+        step("Проверка, что товары отсутствуют", () -> {
+            cartPage.checkCartEmprty();
+        });
+    }
+    @Test
+    @Tag("acceptance")
+    @Tag("regress")
+    @Owner("Никита Шутков")
+    @Description("Клик на иконку корзины перекидывает пользователя на страницу меню")
+    @DisplayName("Переход по иконке корзины")
+    @Severity(SeverityLevel.CRITICAL)
+    void cartOnMainPage() {
+        step("Открыть главную страницу", () -> {
+        mainPage.openMainPage();
+        });
+        step("Клик по иконке корзины", () -> {
+        mainPage.clickCart();
+        });
+        step("Проверяем, что перешли на страницу меню", () -> {
+        menuPage.checkHeaderMenuPage();
+        });
+    }
 }
 
 

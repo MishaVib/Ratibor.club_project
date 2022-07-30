@@ -51,14 +51,14 @@ tasks.withType(Test) {
                 'junit.jupiter.execution.parallel.config.fixed.parallelism': System.getProperty("threads").toInteger()
         ]
     }
-        testLogging {
-            lifecycle {
+    testLogging {
+        lifecycle {
 //            events "started", "failed"
-                events "started", "skipped", "failed", "standard_error", "standard_out"
-                exceptionFormat "short"
-            }
+            events "started", "skipped", "failed", "standard_error", "standard_out"
+            exceptionFormat "short"
         }
     }
+}
 task regress_test(type: Test) {
     useJUnitPlatform {
         includeTags "regress"
@@ -68,9 +68,9 @@ task regress_test(type: Test) {
             includeTags "acceptance"
         }
 
-        }
-
     }
+
+}
 task booking_test(type: Test) {
     useJUnitPlatform {
         includeTags "booking"

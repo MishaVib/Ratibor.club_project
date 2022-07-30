@@ -1,19 +1,10 @@
 package pages;
 
 import com.codeborne.selenide.SelenideElement;
-import com.github.javafaker.Faker;
-
-import java.util.Locale;
 
 import static com.codeborne.selenide.Selenide.$;
 
 public class ClientFormPage {
-
-    // для генерирования рандомных данных
-    Faker faker = new Faker(new Locale("ru"));
-    private final String firstName = faker.name().firstName();
-    private final String phoneNumber = faker.phoneNumber().phoneNumber();
-    private final String address = faker.address().streetAddress();
 
     // обязательные поля для оформления заказа
     private SelenideElement
@@ -21,7 +12,7 @@ public class ClientFormPage {
             inputMobilePhone = $("#billing_phone"),
             inputAddress = $("#shipping_address_1");
 
-    public ClientFormPage fillClientForm() {
+    public ClientFormPage fillClientForm(String firstName, String phoneNumber, String address) {
         inputFirstName.setValue(firstName);
         inputMobilePhone.setValue(phoneNumber);
         inputAddress.setValue(address);

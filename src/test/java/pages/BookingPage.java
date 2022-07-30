@@ -5,8 +5,8 @@ import com.codeborne.selenide.SelenideElement;
 
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.byText;
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.WebDriverConditions.urlContaining;
 
 public class BookingPage {
 
@@ -19,6 +19,8 @@ public class BookingPage {
             bookingFooter = $(".site-info"),
             bookingLink = $("a"),
             bookingLinkByText = $(byText("Оригинальные швейцарские часы"));
+
+    private final String urlSwissClock = "https://original-watches.ru";
 
     public BookingPage openMainPage() {
         open("https://shashlik.club");
@@ -76,11 +78,11 @@ public class BookingPage {
         return this;
     }
 
-    public BookingPage swissHeaderCheck() {
+    public BookingPage swissClockCheck() {
         bookingHeader.shouldHave(exactText("Оригинальные Швейцарские часы"));
+        webdriver().shouldHave(urlContaining(urlSwissClock));
 
         return this;
     }
-
 
 }
