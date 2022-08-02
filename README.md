@@ -96,7 +96,7 @@
 
 
 # Пример запуска тестов Jenkins и отчеты
-## <img width="4%" title="Jenkins" src="images/logo/Jenkins.svg"> Главная страница сборки [Jenkins](https:https://jenkins.autotests.cloud/job/Club.Ratibor/)
+## <img width="4%" title="Jenkins" src="images/logo/Jenkins.svg"> Главная страница сборки [Jenkins](https://jenkins.autotests.cloud/job/Club.Ratibor/)
 
 <p align="center">
   <img src="images/screens/jenkins.png">
